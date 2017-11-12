@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.view.DateView;
 import com.daria.weather.simpleweatherapplication.ui.view.TemperatureView;
+import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 
 /**
  * Created by Daria Popova on 12.11.17.
@@ -38,9 +40,14 @@ public class CurrentWeatherFragment extends Fragment {
         currentWeatherTemp.setText(String.valueOf(weather.getTemperature().getDayTemp()));
         weatherMaxTemp.setTemp(weather.getTemperature().getMaxTemp());
         weatherMinTemp.setTemp(weather.getTemperature().getMinTemp());
-        windSpeed.setText(String.valueOf(weather.getSpeed()));
+        windSpeed.setText(DataUtils.windDirection(weather.getDeg()));
         windDirection.setText(String.valueOf(weather.getDeg()));
         currentWeatherDescription.setText(weather.getWeather().getDescription());
+
+        if (getContext() != null)
+            Glide.with(getContext())
+                    .load(DataUtils.getIcon(weather.getWeather().getId()))
+                    .into(currentWeatherIcon);
     }
 
     public static CurrentWeatherFragment newInstance() {

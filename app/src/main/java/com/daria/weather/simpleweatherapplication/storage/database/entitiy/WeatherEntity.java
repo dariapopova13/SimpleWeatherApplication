@@ -11,19 +11,19 @@ import com.daria.weather.simpleweatherapplication.storage.database.entitiy.commo
 public class WeatherEntity {
 
     @ColumnInfo(name = Entity.ID_COLUMN)
-    private Long id;
+    private int id;
     @ColumnInfo(name = Entity.MAIN_COLUMN)
     private String main;
     @ColumnInfo(name = Entity.DESCRIPTION_COLUMN)
     private String description;
     @ColumnInfo(name = Entity.ICON_COLUMN)
-    private Long icon;
+    private long icon;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -34,17 +34,18 @@ public class WeatherEntity {
 
         WeatherEntity that = (WeatherEntity) o;
 
+        if (id != that.id) return false;
+        if (icon != that.icon) return false;
         if (main != null ? !main.equals(that.main) : that.main != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null)
-            return false;
-        return icon != null ? icon.equals(that.icon) : that.icon == null;
+        return description != null ? description.equals(that.description) : that.description == null;
     }
 
     @Override
     public int hashCode() {
-        int result = main != null ? main.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (main != null ? main.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (icon != null ? icon.hashCode() : 0);
+        result = 31 * result + (int) (icon ^ (icon >>> 32));
         return result;
     }
 
@@ -64,11 +65,11 @@ public class WeatherEntity {
         this.description = description;
     }
 
-    public Long getIcon() {
+    public long getIcon() {
         return icon;
     }
 
-    public void setIcon(Long icon) {
+    public void setIcon(long icon) {
         this.icon = icon;
     }
 

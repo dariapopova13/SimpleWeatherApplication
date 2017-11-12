@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void showToast() {
-        locationToast.setVisibility(View.VISIBLE);
+//        locationToast.setVisibility(View.VISIBLE);
     }
 
     @Override

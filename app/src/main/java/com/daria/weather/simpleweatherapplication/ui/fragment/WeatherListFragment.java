@@ -48,7 +48,8 @@ public class WeatherListFragment extends Fragment {
     private void initUI(View view) {
         weatherRecycleView = (RecyclerView) view.findViewById(R.id.main_week_weather_recycler_view);
         adapter = new WeatherListAdapter(getContext());
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+
         weatherRecycleView.setAdapter(adapter);
         weatherRecycleView.setLayoutManager(manager);
     }

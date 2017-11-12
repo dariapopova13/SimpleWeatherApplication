@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.view.TemperatureView;
 import com.daria.weather.simpleweatherapplication.ui.view.WeekdayView;
+import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     }
 
     public void setWeatherList(List<WeatherListEntity> weatherList) {
-        this.weatherList =  weatherList;
+        this.weatherList = weatherList;
         notifyDataSetChanged();
     }
 
@@ -45,6 +47,10 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
         holder.minTemp.setTemp(entity.getTemperature().getMinTemp());
         holder.maxTemp.setTemp(entity.getTemperature().getMaxTemp());
         holder.weekday.setWeekday(entity.getDate());
+
+        Glide.with(context)
+                .load(DataUtils.getIcon(entity.getWeather().getId()))
+                .into(holder.weatherIcon);
     }
 
     @Override

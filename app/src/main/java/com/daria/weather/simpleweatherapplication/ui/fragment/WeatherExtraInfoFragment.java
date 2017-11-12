@@ -7,11 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
+import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 
 /**
  * Created by Daria Popova on 12.11.17.
@@ -26,6 +29,7 @@ public class WeatherExtraInfoFragment extends Fragment {
 //    private TextView dewPoint;
     private TextView cloudCover;
     private TextView pressure;
+    private ImageView currentWeatherIcon;
 
     //    private TextView sunset;
     public void updateUI(CityWithWeather cityWithWeather) {
@@ -34,6 +38,10 @@ public class WeatherExtraInfoFragment extends Fragment {
         precipitation.setText(String.valueOf(weather.getRain()));
         cloudCover.setText(String.valueOf(weather.getClouds()));
         pressure.setText(String.valueOf(weather.getPressure()));
+        if (getContext() != null)
+            Glide.with(getContext())
+                    .load(DataUtils.getIcon(weather.getWeather().getId()))
+                    .into(currentWeatherIcon);
     }
 
     public static WeatherExtraInfoFragment newInstance() {
@@ -62,6 +70,7 @@ public class WeatherExtraInfoFragment extends Fragment {
         cloudCover = (TextView) view.findViewById(R.id.detailed_info_table_cloud_cover);
         pressure = (TextView) view.findViewById(R.id.detailed_info_table_pressure);
 //        sunset = (TextView) view.findViewById(R.id.detailed_info_table_sunset);
+        currentWeatherIcon = (ImageView) view.findViewById(R.id.detailed_info_current_weather_icon);
     }
 
 

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.ui.MainActivity;
 
 /**
@@ -32,7 +31,7 @@ public class NotificationHelper {
         PendingIntent intent = PendingIntent.getActivity(context, INTENT_CODE, new Intent(context, MainActivity.class),
                 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_wb_sunny_black_24dp)
+//                .setSmallIcon(R.drawable.ic_wb_sunny_black_24dp)
                 .setContentText("Sunny")
                 .setSubText("good weather")
                 .setContentTitle("Title")
