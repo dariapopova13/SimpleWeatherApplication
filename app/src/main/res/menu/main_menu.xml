@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main_menu_location_detection"
+        android:icon="@drawable/ic_location_on_white_24dp"
+        android:title="@string/locaiton_detection_title"
+        app:showAsAction="always"/>
+</menu>
