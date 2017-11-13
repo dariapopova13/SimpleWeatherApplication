@@ -30,6 +30,34 @@ public final class DataUtils {
         return direction;
     }
 
+    public static int getBackground(int weatherId){
+        if (weatherId >= 200 && weatherId <= 232) {
+            return R.drawable.sunny;
+        } else if (weatherId >= 300 && weatherId <= 321) {
+            return R.drawable.drizzle;
+        } else if (weatherId >= 500 && weatherId <= 531) {
+            return R.drawable.rain;
+        } else if (weatherId >= 600 && weatherId <= 622) {
+            return R.drawable.snow;
+        } else if (weatherId >= 701 && weatherId <= 761) {
+            return R.drawable.fog;
+        } else if (weatherId == 800) {
+            return R.drawable.sunny;
+        } else if (weatherId == 801) {
+            return R.drawable.clouds;
+        } else if (weatherId >= 802 && weatherId <= 804) {
+            return R.drawable.clouds;
+        } else if (weatherId >= 900 && weatherId <= 906) {
+            return R.drawable.storm;
+        } else if (weatherId >= 958 && weatherId <= 962) {
+            return R.drawable.storm;
+        } else if (weatherId >= 951 && weatherId <= 957) {
+            return R.drawable.sunny;
+        }
+
+        return R.drawable.sunny;
+    }
+
     public static int getIcon(int weatherId) {
 
         if (weatherId >= 200 && weatherId <= 232) {

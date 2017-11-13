@@ -82,14 +82,17 @@
 
         <TextView
             android:id="@+id/main_weather_current_temp_description"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:ellipsize="end"
+            android:gravity="center"
             android:lines="1"
             android:text="@string/text_placeholder"
-            app:layout_constraintStart_toStartOf="@id/main_weather_current_temp_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_weather_current_temp"
             app:layout_constraintTop_toBottomOf="@id/main_weather_current_temp_icon"
-            tools:text="Good weather Good weather "/>
+            tools:text="Good weather Good weather " />
 
 
         <TextView
@@ -137,14 +140,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="64dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/main_weather_wind"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/max_temp_text_view"/>
+            app:layout_constraintTop_toBottomOf="@+id/max_temp_text_view" />
 
         <TextView
             android:id="@+id/main_wind_direction"

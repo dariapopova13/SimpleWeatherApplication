@@ -23,6 +23,7 @@ import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityW
 import com.daria.weather.simpleweatherapplication.ui.fragment.CurrentWeatherFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherExtraInfoFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherListFragment;
+import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 import com.daria.weather.simpleweatherapplication.utils.PreferencesUtils;
 import com.daria.weather.simpleweatherapplication.viewmodel.CityWithWeatherViewModel;
 
@@ -92,7 +93,6 @@ public class MainActivity extends AppCompatActivity
             isUpdated = savedInstanceState.getBoolean(UPDATED_KEY);
         setContentView(R.layout.activity_main);
         initUI();
-        setBackground();
     }
 
     public static final String UPDATED_KEY = "updated";
@@ -121,9 +121,12 @@ public class MainActivity extends AppCompatActivity
     private void updateUI(List<CityWithWeather> cityWithWeathers) {
         swipeRefreshLayout.setRefreshing(false);
         if (cityWithWeathers.size() == 0) return;
+
         CityWithWeather cityWithWeather = cityWithWeathers.get(0);
         // FIXME: 12.11.17 add pager with tabs
         if (cityWithWeather != null) {
+            setBackground(cityWithWeather);
+
             currentWeatherFragment.updateUI(cityWithWeather);
             weatherListFragment.updateUI(cityWithWeather);
             weatherExtraInfoFragment.updateUI(cityWithWeather);
@@ -134,9 +137,10 @@ public class MainActivity extends AppCompatActivity
 //        locationToast.setVisibility(View.GONE);
     }
 
-    private void setBackground() {
+    private void setBackground(CityWithWeather cityWithWeather) {
         Glide.with(this)
-                .load(R.drawable.weather_background)
+                .load(DataUtils.getBackground(cityWithWeather.getWeatherLists().get(0)
+                        .getWeather().getId()))
                 .into(background);
     }
 
