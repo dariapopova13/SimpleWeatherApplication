@@ -30,8 +30,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
 
-        <service android:name=".location.LocationService"/>
-        <service android:name=".network.WeatherNetworkService"/>
 
     </application>
 

@@ -43,6 +43,8 @@ public class WeatherListEntity {
     private int clouds;
     @ColumnInfo(name = Entity.RAIN_COLUMN)
     private double rain;
+    @ColumnInfo(name = Entity.SNOW_COLUMN)
+    private double snow;
     @ColumnInfo(name = Entity.CITY_ID_COLUMN)
     @NonNull
     private Long cityId;
@@ -51,6 +53,13 @@ public class WeatherListEntity {
     @Embedded(prefix = "_weather")
     private WeatherEntity weather;
 
+    public double getSnow() {
+        return snow;
+    }
+
+    public void setSnow(double snow) {
+        this.snow = snow;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -186,5 +195,6 @@ public class WeatherListEntity {
         public static final String DATE_COLUMN = "date";
         public static final String RAIN_COLUMN = "rain_night";
         public static final String CITY_ID_COLUMN = "city_id";
+        public static final String SNOW_COLUMN = "snow";
     }
 }

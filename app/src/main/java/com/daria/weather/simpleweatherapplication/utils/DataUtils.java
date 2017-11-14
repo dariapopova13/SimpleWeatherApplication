@@ -25,16 +25,8 @@ public final class DataUtils {
             temp = format.format(entity.getDate());
             if (temp.equalsIgnoreCase(current)) {
                 return entity;
-            } else {
-                try {
-                    remove = format.parse(temp);
-                    time = format.parse(current);
-                    if (remove.before(time))
-                        weatherListEntities.remove(entity);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
+
         }
         return null;
     }

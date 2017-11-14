@@ -19,13 +19,19 @@ import java.util.concurrent.ExecutionException;
 public class WeatherStorageManager {
 
     private static WeatherDatabase database;
-    private Context context;
+    private static WeatherStorageManager manager;
 
-    public WeatherStorageManager(Context context) {
-        this.context = context;
-        database = WeatherDatabase.getInstance(context);
+    private WeatherStorageManager() {
     }
 
+    public static WeatherStorageManager getInstance(Context context) {
+        if (database == null) {
+            database = WeatherDatabase.getInstance(context);
+        }
+        if (manager == null)
+            manager = new WeatherStorageManager();
+        return manager;
+    }
 
     public void store(CityWithWeather... cityWithWeathers) {
         new InsertAsyncTask().execute(cityWithWeathers);

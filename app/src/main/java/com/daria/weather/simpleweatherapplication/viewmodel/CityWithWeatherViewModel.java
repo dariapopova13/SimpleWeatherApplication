@@ -4,13 +4,11 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.daria.weather.simpleweatherapplication.network.WeatherSynchronizer;
 import com.daria.weather.simpleweatherapplication.storage.WeatherStorageManager;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
-import com.daria.weather.simpleweatherapplication.utils.UrlUtils;
 
 import java.util.List;
 
@@ -24,7 +22,8 @@ public class CityWithWeatherViewModel extends AndroidViewModel
     private LiveData<List<CityWithWeather>> cityWithWeather;
     private WeatherStorageManager storageManager;
     private WeatherSynchronizer weatherSynchronizer;
-    private Context context;
+    // FIXME: 14.11.17 replace this fragment
+    private String currentUrl;
 
     @Override
     public void update(CityWithWeather cityWithWeather) {
@@ -33,9 +32,8 @@ public class CityWithWeatherViewModel extends AndroidViewModel
 
     public CityWithWeatherViewModel(@NonNull Application application) {
         super(application);
-        this.context = application;
-        storageManager = new WeatherStorageManager(application);
-        weatherSynchronizer = WeatherSynchronizer.getInstance(application,this);
+        storageManager = WeatherStorageManager.getInstance(application);
+        weatherSynchronizer = WeatherSynchronizer.getInstance(application, this);
     }
 
 
@@ -49,12 +47,16 @@ public class CityWithWeatherViewModel extends AndroidViewModel
         return cityWithWeather;
     }
 
+    public void setCurrentUrl(String urlFromPreferences) {
+        this.currentUrl = urlFromPreferences;
+    }
+
     private void loadWeather() {
         cityWithWeather = storageManager.getAll();
     }
 
     public void loadDataFromNetwork() {
-        weatherSynchronizer.synchronize(UrlUtils.getUrlFromPreferences(context));
+        weatherSynchronizer.synchronize(currentUrl);
     }
 
     public void store(CityWithWeather cityWithWeather) {

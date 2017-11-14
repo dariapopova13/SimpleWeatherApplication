@@ -26,7 +26,23 @@ public class WeatherList {
     private int windDirection;
     private int clouds;
     private double rain;
+    private double snow;
 
+    public double getWindSpeed() {
+        return windSpeed;
+    }
+
+    public void setWindSpeed(double windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
+    public double getSnow() {
+        return snow;
+    }
+
+    public void setSnow(double snow) {
+        this.snow = snow;
+    }
 
     public double getRain() {
         return rain;
@@ -78,10 +94,6 @@ public class WeatherList {
 
     public double getSpeed() {
         return windSpeed;
-    }
-
-    public void setWindSpeed(double windSpeed) {
-        this.windSpeed = windSpeed;
     }
 
     public int getWindDirection() {

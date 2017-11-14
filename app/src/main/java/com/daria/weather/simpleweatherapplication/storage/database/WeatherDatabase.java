@@ -24,7 +24,7 @@ import java.util.Set;
 public abstract class WeatherDatabase extends RoomDatabase {
 
     public final static String DATABASE_NAME = "weather.db";
-    public final static int DATABASE_VERSION = 1;
+    public final static int DATABASE_VERSION = 2;
     private static WeatherDatabase instance;
 
     public static synchronized WeatherDatabase getInstance(Context context) {
@@ -32,6 +32,7 @@ public abstract class WeatherDatabase extends RoomDatabase {
             instance = Room
                     .databaseBuilder(context.getApplicationContext(),
                             WeatherDatabase.class, DATABASE_NAME)
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return instance;

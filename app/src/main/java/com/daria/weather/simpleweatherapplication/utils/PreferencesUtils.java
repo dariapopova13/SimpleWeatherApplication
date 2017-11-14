@@ -2,6 +2,7 @@ package com.daria.weather.simpleweatherapplication.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Address;
 import android.preference.PreferenceManager;
 
 import com.daria.weather.simpleweatherapplication.R;
@@ -12,10 +13,10 @@ import com.daria.weather.simpleweatherapplication.R;
 
 public final class PreferencesUtils {
 
-    private static final String LOCATION_KEY = "location";
-    private static final String UNITS_KEY = "units";
-    private static final String LAT_COORD_KEY = "lat_coord";
-    private static final String LON_COORD_KEY = "lon_coord";
+    public static final String LOCATION_KEY = "location";
+    public static final String UNITS_KEY = "units";
+    public static final String LAT_COORD_KEY = "lat_coord";
+    public static final String LON_COORD_KEY = "lon_coord";
 
     public static String getCity(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -63,5 +64,12 @@ public final class PreferencesUtils {
     }
 
 
-
+    public static void setAddress(Context context, Address address) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String city = address.getLocality().concat(",").concat(address.getCountryCode());
+         city =city.replaceAll("'", "");
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(LOCATION_KEY, city);
+        editor.apply();
+    }
 }

@@ -8,6 +8,7 @@
     android:layout_marginStart="@dimen/main_margin"
     android:layout_marginTop="@dimen/main_margin"
     app:cardElevation="@dimen/main_card_elevation"
+    app:cardCornerRadius="@dimen/main_card_corner_radius"
     app:cardBackgroundColor="@color/card_view_opacity_black">
 
     <android.support.constraint.ConstraintLayout
@@ -39,8 +40,7 @@
             app:layout_constraintBottom_toBottomOf="@id/main_weather_current_temp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/main_date"
-            tools:text="10:30"
-            android:layout_marginLeft="8dp" />
+            tools:text="10:30" />
 
 
         <TextView
@@ -61,7 +61,6 @@
             android:id="@+id/main_weather_temp_units"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/main_weather_current_temp"
@@ -73,7 +72,6 @@
             android:layout_width="@dimen/main_weather_current_temp_icon_size"
             android:layout_height="@dimen/main_weather_current_temp_icon_size"
             android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:contentDescription="@string/current_weather_icon_image_description"
@@ -109,7 +107,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:text="@string/temp_placeholder"
             app:layout_constraintStart_toEndOf="@id/max_temp_text_view"
@@ -119,7 +116,6 @@
             android:id="@+id/min_temp_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:text="@string/main_weather_min"
             app:layout_constraintStart_toEndOf="@id/main_weather_max_temp"
@@ -129,7 +125,6 @@
             android:id="@+id/main_weather_min_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:text="@string/temp_placeholder"
             app:layout_constraintStart_toEndOf="@id/min_temp_text_view"
@@ -147,13 +142,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/max_temp_text_view" />
-
+            app:layout_constraintTop_toBottomOf="@+id/max_temp_text_view"/>
         <TextView
             android:id="@+id/main_wind_direction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:text="@string/text_placeholder"
             app:layout_constraintBottom_toBottomOf="@id/main_wind_text_view"
@@ -165,7 +158,6 @@
             android:id="@+id/main_weather_wind_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:text="@string/text_placeholder"
             app:layout_constraintStart_toEndOf="@id/main_wind_direction"

@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
+import com.daria.weather.simpleweatherapplication.location.WeatherLocationManager;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.fragment.CurrentWeatherFragment;
@@ -26,6 +27,7 @@ import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherExtraInfoFr
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherListFragment;
 import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 import com.daria.weather.simpleweatherapplication.utils.PreferencesUtils;
+import com.daria.weather.simpleweatherapplication.utils.UrlUtils;
 import com.daria.weather.simpleweatherapplication.viewmodel.CityWithWeatherViewModel;
 
 import java.util.List;
@@ -33,7 +35,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements SwipeRefreshLayout.OnRefreshListener {
-
+    public static final String UPDATED_KEY = "updated";
     private CityWithWeatherViewModel model;
     private ImageView background;
     private TextView location;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle drawerToggle;
     private SwipeRefreshLayout swipeRefreshLayout;
     private boolean isUpdated;
+    private WeatherLocationManager weatherLocationManager;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onRefresh() {
+        weatherLocationManager.getAddress();
         model.loadDataFromNetwork();
         swipeRefreshLayout.setRefreshing(true);
     }
@@ -83,6 +87,7 @@ public class MainActivity extends AppCompatActivity
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+
     private void showToast() {
 //        locationToast.setVisibility(View.VISIBLE);
     }
@@ -90,13 +95,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        weatherLocationManager = new WeatherLocationManager(this);
         if (savedInstanceState != null)
             isUpdated = savedInstanceState.getBoolean(UPDATED_KEY);
         setContentView(R.layout.activity_main);
         initUI();
     }
-
-    public static final String UPDATED_KEY = "updated";
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -109,6 +113,7 @@ public class MainActivity extends AppCompatActivity
         super.onStart();
         model = ViewModelProviders.of(this)
                 .get(CityWithWeatherViewModel.class);
+        model.setCurrentUrl(UrlUtils.getUrlFromPreferences(this));
         final Observer<List<CityWithWeather>> observer = new Observer<List<CityWithWeather>>() {
             @Override
             public void onChanged(@Nullable List<CityWithWeather> cityWithWeathers) {
@@ -157,7 +162,7 @@ public class MainActivity extends AppCompatActivity
 
         location = (TextView) findViewById(R.id.main_app_bar_location_text_view);
         locationToast = (TextView) findViewById(R.id.location_detecting);
-        location.setText(PreferencesUtils.getCity(this));
+        updateLocationText();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer);
         drawerToggle = new ActionBarDrawerToggle(
@@ -196,5 +201,8 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
+    private void updateLocationText() {
+        location.setText(PreferencesUtils.getCity(this));
+    }
 
 }

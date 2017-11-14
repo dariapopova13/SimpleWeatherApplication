@@ -40,7 +40,8 @@ public final class EntityUtils {
         entity.setDate(weatherList.getDate());
         entity.setTemperature(toEntity(weatherList.getTemperature()));
         entity.setWeather(toEntity(selectSingleWeather(weatherList.getWeathers())));
-
+        entity.setRain(weatherList.getRain());
+        entity.setSnow(weatherList.getSnow());
         return entity;
     }
 
