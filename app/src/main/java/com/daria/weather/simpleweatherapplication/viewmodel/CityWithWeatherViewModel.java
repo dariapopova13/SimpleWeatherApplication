@@ -33,9 +33,9 @@ public class CityWithWeatherViewModel extends AndroidViewModel
 
     public CityWithWeatherViewModel(@NonNull Application application) {
         super(application);
-        this.context = application.getApplicationContext();
-        storageManager = new WeatherStorageManager(context);
-        weatherSynchronizer = WeatherSynchronizer.getInstance(this);
+        this.context = application;
+        storageManager = new WeatherStorageManager(application);
+        weatherSynchronizer = WeatherSynchronizer.getInstance(application,this);
     }
 
 
@@ -49,7 +49,7 @@ public class CityWithWeatherViewModel extends AndroidViewModel
         return cityWithWeather;
     }
 
-    public void loadWeather() {
+    private void loadWeather() {
         cityWithWeather = storageManager.getAll();
     }
 

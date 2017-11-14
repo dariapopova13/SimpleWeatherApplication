@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.daria.weather.simpleweatherapplication.R;
-import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
+import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.adapter.WeatherListAdapter;
+
+import java.util.List;
 
 /**
  * Created by Daria Popova on 12.11.17.
@@ -24,8 +26,8 @@ public class WeatherListFragment extends Fragment {
     private WeatherListAdapter adapter;
 
 
-    public void updateUI(CityWithWeather cityWithWeather) {
-        adapter.setWeatherList(cityWithWeather.getWeatherLists());
+    public void updateUI(List<WeatherListEntity> weatherListEntities) {
+        adapter.setWeatherList(weatherListEntities);
     }
 
     @Nullable

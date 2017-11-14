@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
-import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.view.DateView;
 import com.daria.weather.simpleweatherapplication.ui.view.TemperatureView;
@@ -34,14 +33,13 @@ public class CurrentWeatherFragment extends Fragment {
     private TextView windDirection;
     private TextView windSpeed;
 
-    public void updateUI(CityWithWeather cityWithWeather) {
-        WeatherListEntity weather = cityWithWeather.getWeatherLists().get(0);
+    public void updateUI(WeatherListEntity weather) {
         dateView.setDate(weather.getDate());
         currentWeatherTemp.setText(String.valueOf(weather.getTemperature().getDayTemp()));
         weatherMaxTemp.setTemp(weather.getTemperature().getMaxTemp());
         weatherMinTemp.setTemp(weather.getTemperature().getMinTemp());
-        windSpeed.setText(DataUtils.windDirection(weather.getDeg()));
-        windDirection.setText(String.valueOf(weather.getDeg()));
+        windSpeed.setText(String.valueOf((int) weather.getSpeed()));
+        windDirection.setText(DataUtils.windDirection(weather.getDeg()));
         currentWeatherDescription.setText(weather.getWeather().getDescription());
 
         if (getContext() != null)

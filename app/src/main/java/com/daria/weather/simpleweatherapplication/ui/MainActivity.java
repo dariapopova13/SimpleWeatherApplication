@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
+import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.fragment.CurrentWeatherFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherExtraInfoFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherListFragment;
@@ -123,13 +124,13 @@ public class MainActivity extends AppCompatActivity
         if (cityWithWeathers.size() == 0) return;
 
         CityWithWeather cityWithWeather = cityWithWeathers.get(0);
+        WeatherListEntity current = DataUtils.getCurrentWeather(cityWithWeather.getWeatherLists());
         // FIXME: 12.11.17 add pager with tabs
-        if (cityWithWeather != null) {
-            setBackground(cityWithWeather);
-
-            currentWeatherFragment.updateUI(cityWithWeather);
-            weatherListFragment.updateUI(cityWithWeather);
-            weatherExtraInfoFragment.updateUI(cityWithWeather);
+        if (current != null) {
+            setBackground(current);
+            currentWeatherFragment.updateUI(current);
+            weatherListFragment.updateUI(cityWithWeather.getWeatherLists());
+            weatherExtraInfoFragment.updateUI(current);
         }
     }
 
@@ -137,10 +138,9 @@ public class MainActivity extends AppCompatActivity
 //        locationToast.setVisibility(View.GONE);
     }
 
-    private void setBackground(CityWithWeather cityWithWeather) {
+    private void setBackground(WeatherListEntity weather) {
         Glide.with(this)
-                .load(DataUtils.getBackground(cityWithWeather.getWeatherLists().get(0)
-                        .getWeather().getId()))
+                .load(DataUtils.getBackground(weather.getWeather().getId()))
                 .into(background);
     }
 

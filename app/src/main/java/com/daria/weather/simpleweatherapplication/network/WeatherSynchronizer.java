@@ -1,5 +1,7 @@
 package com.daria.weather.simpleweatherapplication.network;
 
+import android.content.Context;
+
 import com.daria.weather.simpleweatherapplication.network.data.WeatherResponse;
 import com.daria.weather.simpleweatherapplication.storage.WeatherStorageManager;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
@@ -24,37 +26,43 @@ public class WeatherSynchronizer {
     private WeatherStorageManager storageManager;
     private static WeatherSynchronizer synchronizer;
     private static List<NetworkDataUpdaterListener> listeners;
+    private WeatherCallbackResponse callbackResponse;
 
-    public static WeatherSynchronizer getInstance(NetworkDataUpdaterListener listener) {
+    public static WeatherSynchronizer getInstance(Context context,
+                                                  NetworkDataUpdaterListener listener) {
         if (synchronizer == null)
             synchronizer = new WeatherSynchronizer();
         if (listeners == null)
             listeners = new ArrayList<>();
+
         listeners.add(listener);
 
         return synchronizer;
     }
 
     public void synchronize(String url) {
-
+        if (callbackResponse == null)
+            callbackResponse = new WeatherCallbackResponse();
         Retrofit retrofit = WeatherApiClient.getClient();
         WeatherApiInterface service = retrofit.create(WeatherApiInterface.class);
 
-        service.getWeather(url).enqueue(new Callback<WeatherResponse>() {
-            @Override
-            public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
-                WeatherResponse weatherResponse = response.body();
-                cityWithWeather = EntityUtils.toEntity(weatherResponse.getCity(),
-                        weatherResponse.getWeatherList());
-                sendCallbackToListeners(cityWithWeather);
-            }
+        service.getWeather(url).enqueue(callbackResponse);
+    }
 
-            @Override
-            public void onFailure(Call<WeatherResponse> call, Throwable t) {
+    private class WeatherCallbackResponse implements Callback<WeatherResponse> {
 
-            }
-        });
+        @Override
+        public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
+            WeatherResponse weatherResponse = response.body();
+            cityWithWeather = EntityUtils.toEntity(weatherResponse.getCity(),
+                    weatherResponse.getWeatherList());
+            sendCallbackToListeners(cityWithWeather);
+        }
 
+        @Override
+        public void onFailure(Call<WeatherResponse> call, Throwable t) {
+
+        }
     }
 
     private void sendCallbackToListeners(CityWithWeather cityWithWeather) {
@@ -66,6 +74,8 @@ public class WeatherSynchronizer {
 
     public interface NetworkDataUpdaterListener {
         void update(CityWithWeather cityWithWeather);
+
+
     }
 
 }

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
-import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 
@@ -32,8 +31,7 @@ public class WeatherExtraInfoFragment extends Fragment {
     private ImageView currentWeatherIcon;
 
     //    private TextView sunset;
-    public void updateUI(CityWithWeather cityWithWeather) {
-        WeatherListEntity weather = cityWithWeather.getWeatherLists().get(0);
+    public void updateUI(WeatherListEntity weather) {
         humidity.setText(String.valueOf(weather.getHumidity()));
         precipitation.setText(String.valueOf(weather.getRain()));
         cloudCover.setText(String.valueOf(weather.getClouds()));

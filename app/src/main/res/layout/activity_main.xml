@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:background="@drawable/weather_background"
+    tools:background="@drawable/clouds"
     tools:context="com.daria.weather.simpleweatherapplication.ui.MainActivity">
 
     <ImageView

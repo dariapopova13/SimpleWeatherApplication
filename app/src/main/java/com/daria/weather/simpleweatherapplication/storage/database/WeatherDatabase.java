@@ -30,7 +30,8 @@ public abstract class WeatherDatabase extends RoomDatabase {
     public static synchronized WeatherDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room
-                    .databaseBuilder(context.getApplicationContext(), WeatherDatabase.class, DATABASE_NAME)
+                    .databaseBuilder(context.getApplicationContext(),
+                            WeatherDatabase.class, DATABASE_NAME)
                     .build();
         }
         return instance;

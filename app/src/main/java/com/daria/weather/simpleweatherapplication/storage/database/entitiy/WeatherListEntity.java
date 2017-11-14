@@ -31,18 +31,18 @@ public class WeatherListEntity {
     @NonNull
     private Date date;
     @ColumnInfo(name = Entity.PRESSURE_COLUMN)
-    private Double pressure;
+    private double pressure;
     @ColumnInfo(name = Entity.HUMIDITY_COLUMN)
-    private Double humidity;
+    private double humidity;
     @ColumnInfo(name = Entity.SPEED_COLUMN)
-    private Double speed;
+    private double speed;
     @ColumnInfo(name = Entity.DEG_COLUMN)
     //wind direction, degrees
-    private Integer deg;
+    private int deg;
     @ColumnInfo(name = Entity.CLOUDS_COLUMN)
-    private Integer clouds;
+    private int clouds;
     @ColumnInfo(name = Entity.RAIN_COLUMN)
-    private Double rain;
+    private double rain;
     @ColumnInfo(name = Entity.CITY_ID_COLUMN)
     @NonNull
     private Long cityId;
@@ -52,36 +52,44 @@ public class WeatherListEntity {
     private WeatherEntity weather;
 
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        WeatherListEntity that = (WeatherListEntity) o;
+        WeatherListEntity entity = (WeatherListEntity) o;
 
-        if (!date.equals(that.date)) return false;
-        if (!pressure.equals(that.pressure)) return false;
-        if (!humidity.equals(that.humidity)) return false;
-        if (!speed.equals(that.speed)) return false;
-        if (deg != null ? !deg.equals(that.deg) : that.deg != null) return false;
-        if (clouds != null ? !clouds.equals(that.clouds) : that.clouds != null) return false;
-        if (rain != null ? !rain.equals(that.rain) : that.rain != null) return false;
-        if (!cityId.equals(that.cityId)) return false;
-        if (!temperature.equals(that.temperature)) return false;
-        return weather.equals(that.weather);
+        if (Double.compare(entity.pressure, pressure) != 0) return false;
+        if (Double.compare(entity.humidity, humidity) != 0) return false;
+        if (Double.compare(entity.speed, speed) != 0) return false;
+        if (deg != entity.deg) return false;
+        if (clouds != entity.clouds) return false;
+        if (Double.compare(entity.rain, rain) != 0) return false;
+        if (!date.equals(entity.date)) return false;
+        if (!cityId.equals(entity.cityId)) return false;
+        if (temperature != null ? !temperature.equals(entity.temperature) : entity.temperature != null)
+            return false;
+        return weather != null ? weather.equals(entity.weather) : entity.weather == null;
     }
 
+    @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + date.hashCode();
-        result = 31 * result + pressure.hashCode();
-        result = 31 * result + humidity.hashCode();
-        result = 31 * result + speed.hashCode();
-        result = 31 * result + (deg != null ? deg.hashCode() : 0);
-        result = 31 * result + (clouds != null ? clouds.hashCode() : 0);
-        result = 31 * result + (rain != null ? rain.hashCode() : 0);
+        int result;
+        long temp;
+        result = date.hashCode();
+        temp = Double.doubleToLongBits(pressure);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(humidity);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(speed);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + deg;
+        result = 31 * result + clouds;
+        temp = Double.doubleToLongBits(rain);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + cityId.hashCode();
-        result = 31 * result + temperature.hashCode();
-        result = 31 * result + weather.hashCode();
+        result = 31 * result + (temperature != null ? temperature.hashCode() : 0);
+        result = 31 * result + (weather != null ? weather.hashCode() : 0);
         return result;
     }
 
@@ -109,51 +117,51 @@ public class WeatherListEntity {
         this.date = date;
     }
 
-    public Double getPressure() {
+    public double getPressure() {
         return pressure;
     }
 
-    public void setPressure(Double pressure) {
+    public void setPressure(double pressure) {
         this.pressure = pressure;
     }
 
-    public Double getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(Double humidity) {
+    public void setHumidity(double humidity) {
         this.humidity = humidity;
     }
 
-    public Double getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(Double speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
-    public Integer getDeg() {
+    public int getDeg() {
         return deg;
     }
 
-    public void setDeg(Integer deg) {
+    public void setDeg(int deg) {
         this.deg = deg;
     }
 
-    public Integer getClouds() {
+    public int getClouds() {
         return clouds;
     }
 
-    public void setClouds(Integer clouds) {
+    public void setClouds(int clouds) {
         this.clouds = clouds;
     }
 
-    public Double getRain() {
+    public double getRain() {
         return rain;
     }
 
-    public void setRain(Double rain) {
+    public void setRain(double rain) {
         this.rain = rain;
     }
 
@@ -174,9 +182,9 @@ public class WeatherListEntity {
         public static final String HUMIDITY_COLUMN = "humidity";
         public static final String SPEED_COLUMN = "speed";
         public static final String DEG_COLUMN = "deg";
-        public static final String CLOUDS_COLUMN = "clouds";
+        public static final String CLOUDS_COLUMN = "cloud_day";
         public static final String DATE_COLUMN = "date";
-        public static final String RAIN_COLUMN = "rain";
+        public static final String RAIN_COLUMN = "rain_night";
         public static final String CITY_ID_COLUMN = "city_id";
     }
 }
