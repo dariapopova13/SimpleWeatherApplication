@@ -5,14 +5,13 @@ package com.daria.weather.simpleweatherapplication.ui.view;
  */
 
 public enum DayOfWeek {
+    SUNDAY,
     MONDAY,
-
     TUESDAY,
     WEDNESDAY,
     THURSDAY,
     FRIDAY,
-    SATURDAY,
-    SUNDAY;
+    SATURDAY;
 
     private static final DayOfWeek[] ENUMS = DayOfWeek.values();
 
@@ -23,8 +22,8 @@ public enum DayOfWeek {
         return ENUMS[dayOfWeek - 1];
     }
 
-    public String shortName(){
-        return name().substring(0,3).toLowerCase().concat(".");
+    public String shortName() {
+        return name().substring(0, 3).toLowerCase().concat(".");
     }
 }
 

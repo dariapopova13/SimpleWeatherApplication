@@ -16,14 +16,18 @@ import com.daria.weather.simpleweatherapplication.ui.adapter.WeatherListAdapter;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Daria Popova on 12.11.17.
  */
 
 public class WeatherListFragment extends Fragment {
 
-    private RecyclerView weatherRecycleView;
-    private WeatherListAdapter adapter;
+    @BindView(R.id.main_week_weather_recycler_view)
+    RecyclerView weatherRecycleView;
+    WeatherListAdapter adapter;
 
 
     public void updateUI(List<WeatherListEntity> weatherListEntities) {
@@ -34,7 +38,8 @@ public class WeatherListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.weather_list_fragment, container, false);
-        initUI(view);
+        ButterKnife.bind(this, view);
+        initRecyclerView(view);
         return view;
     }
 
@@ -47,8 +52,7 @@ public class WeatherListFragment extends Fragment {
         return fragment;
     }
 
-    private void initUI(View view) {
-        weatherRecycleView = (RecyclerView) view.findViewById(R.id.main_week_weather_recycler_view);
+    private void initRecyclerView(View view) {
         adapter = new WeatherListAdapter(getContext());
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
 

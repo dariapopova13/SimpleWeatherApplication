@@ -16,6 +16,9 @@ import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Daria Popova on 11.11.17.
  */
@@ -60,17 +63,18 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 
     public class WeatherViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.weather_recycler_view_weekday)
         WeekdayView weekday;
+        @BindView(R.id.weather_recycler_view_icon)
         ImageView weatherIcon;
+        @BindView(R.id.weather_recycler_view_max)
         TemperatureView maxTemp;
+        @BindView(R.id.weather_recycler_view_min)
         TemperatureView minTemp;
 
         public WeatherViewHolder(View view) {
             super(view);
-            weekday = (WeekdayView) view.findViewById(R.id.weather_recycler_view_weekday);
-            weatherIcon = (ImageView) view.findViewById(R.id.weather_recycler_view_icon);
-            maxTemp = (TemperatureView) view.findViewById(R.id.weather_recycler_view_max);
-            minTemp = (TemperatureView) view.findViewById(R.id.weather_recycler_view_min);
+            ButterKnife.bind(this, view);
         }
     }
 }

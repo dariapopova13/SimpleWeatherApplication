@@ -32,23 +32,34 @@ import com.daria.weather.simpleweatherapplication.viewmodel.CityWithWeatherViewM
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class MainActivity extends AppCompatActivity
         implements SwipeRefreshLayout.OnRefreshListener {
+
     public static final String UPDATED_KEY = "updated";
     private CityWithWeatherViewModel model;
-    private ImageView background;
-    private TextView location;
-    private TextView locationToast;
+    @BindView(R.id.main_background)
+    ImageView background;
+    @BindView(R.id.main_app_bar_location_text_view)
+    TextView location;
+    @BindView(R.id.location_detecting)
+    TextView locationToast;
     private CurrentWeatherFragment currentWeatherFragment;
     private WeatherExtraInfoFragment weatherExtraInfoFragment;
     private WeatherListFragment weatherListFragment;
-    private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
+    @BindView(R.id.main_app_bar_toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.main_drawer)
+    DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.main_swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
     private boolean isUpdated;
     private WeatherLocationManager weatherLocationManager;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,15 +167,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initUI() {
-        background = (ImageView) findViewById(R.id.main_background);
-        toolbar = (Toolbar) findViewById(R.id.main_app_bar_toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        location = (TextView) findViewById(R.id.main_app_bar_location_text_view);
-        locationToast = (TextView) findViewById(R.id.location_detecting);
         updateLocationText();
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer);
+
         drawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -187,7 +195,6 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.main_swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
         weatherExtraInfoFragment = WeatherExtraInfoFragment.newInstance();
