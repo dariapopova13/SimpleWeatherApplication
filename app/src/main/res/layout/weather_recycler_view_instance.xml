@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.daria.weather.simpleweatherapplication.ui.view.WeekdayView
+    <TextView
         android:id="@+id/weather_recycler_view_weekday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/weather_icon_png_5"/>
 
-    <com.daria.weather.simpleweatherapplication.ui.view.TemperatureView
+    <TextView
         android:id="@+id/weather_recycler_view_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="-2°"/>
 
-    <com.daria.weather.simpleweatherapplication.ui.view.TemperatureView
+    <TextView
         android:id="@+id/weather_recycler_view_max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -16,7 +16,7 @@ public class CityEntity {
 
     @PrimaryKey
     @ColumnInfo(index = true, name = Entity.ID_COLUMN)
-    private Long id;
+    private long id;
     @ColumnInfo(name = Entity.NAME_COLUMN)
     private String name;
     @ColumnInfo(name = Entity.COUNTRY_COLUMN)
@@ -29,24 +29,24 @@ public class CityEntity {
 
         CityEntity that = (CityEntity) o;
 
-        if (!id.equals(that.id)) return false;
-        if (!name.equals(that.name)) return false;
-        return country.equals(that.country);
+        if (id != that.id) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return country != null ? country.equals(that.country) : that.country == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + country.hashCode();
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
         return result;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

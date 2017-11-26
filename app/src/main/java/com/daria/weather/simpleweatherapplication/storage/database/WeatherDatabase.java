@@ -1,19 +1,14 @@
 package com.daria.weather.simpleweatherapplication.storage.database;
 
 import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.Transaction;
-import android.content.Context;
 
 import com.daria.weather.simpleweatherapplication.storage.database.dao.CityDao;
 import com.daria.weather.simpleweatherapplication.storage.database.dao.WeatherListDao;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityEntity;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
-
-import java.util.HashSet;
-import java.util.Set;
 
 
 /**
@@ -24,38 +19,17 @@ import java.util.Set;
 public abstract class WeatherDatabase extends RoomDatabase {
 
     public final static String DATABASE_NAME = "weather.db";
-    public final static int DATABASE_VERSION = 2;
-    private static WeatherDatabase instance;
-
-    public static synchronized WeatherDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = Room
-                    .databaseBuilder(context.getApplicationContext(),
-                            WeatherDatabase.class, DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
-                    .build();
-        }
-        return instance;
-    }
+    public final static int DATABASE_VERSION = 3;
 
     public abstract CityDao cityDao();
 
     public abstract WeatherListDao weatherListRepository();
 
     @Transaction
-    public void insertCityWithWeather(CityWithWeather... cityWithWeathers) {
+    public void insertCityWithWeather(CityWithWeather cityWithWeather) {
 
-        Set<CityEntity> cityEntities = new HashSet<>();
-        Set<WeatherListEntity> weatherListEntities = new HashSet<>();
-        for (CityWithWeather cityWithWeather : cityWithWeathers) {
-            if (cityWithWeather.getCity() == null)
-                continue;
-            cityEntities.add(cityWithWeather.getCity());
-            weatherListEntities.addAll(cityWithWeather.getWeatherLists());
-        }
-
-        cityDao().delete(cityEntities);
-        cityDao().insert(cityEntities);
-        weatherListRepository().insert(weatherListEntities);
+        cityDao().delete(cityWithWeather.getCity());
+        cityDao().insert(cityWithWeather.getCity());
+        weatherListRepository().insert(cityWithWeather.getWeatherLists());
     }
 }

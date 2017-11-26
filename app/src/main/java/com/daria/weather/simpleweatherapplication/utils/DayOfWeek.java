@@ -1,4 +1,4 @@
-package com.daria.weather.simpleweatherapplication.ui.view;
+package com.daria.weather.simpleweatherapplication.utils;
 
 /**
  * Created by Daria Popova on 13/11/17.

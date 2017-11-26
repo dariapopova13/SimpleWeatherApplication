@@ -13,14 +13,16 @@ import com.daria.weather.simpleweatherapplication.storage.database.entitiy.Weath
 import java.util.ArrayList;
 import java.util.List;
 
+import dagger.Reusable;
+
 /**
  * Created by Daria Popova on 09.11.17.
  */
-
+@Reusable
 public final class EntityUtils {
 
 
-    public static CityEntity toEntity(City city) {
+    public CityEntity toEntity(City city) {
         final CityEntity entity = new CityEntity();
         entity.setName(city.getName());
         entity.setId(city.getId());
@@ -30,7 +32,7 @@ public final class EntityUtils {
     }
 
 
-    public static WeatherListEntity toEntity(WeatherList weatherList) {
+    public WeatherListEntity toEntity(WeatherList weatherList) {
         final WeatherListEntity entity = new WeatherListEntity();
         entity.setHumidity(weatherList.getHumidity());
         entity.setPressure(weatherList.getPressure());
@@ -45,7 +47,7 @@ public final class EntityUtils {
         return entity;
     }
 
-    private static WeatherEntity toEntity(Weather weather) {
+    private WeatherEntity toEntity(Weather weather) {
         final WeatherEntity entity = new WeatherEntity();
         entity.setIcon(weather.getIconId());
         entity.setMain(weather.getMain());
@@ -55,13 +57,13 @@ public final class EntityUtils {
         return entity;
     }
 
-    private static Weather selectSingleWeather(List<Weather> weathers) {
+    private Weather selectSingleWeather(List<Weather> weathers) {
         if (weathers.isEmpty())
             return null;
         return weathers.get(0);
     }
 
-    private static TemperatureEntity toEntity(Temperature temperature) {
+    private TemperatureEntity toEntity(Temperature temperature) {
         final TemperatureEntity entity = new TemperatureEntity();
         entity.setMornTemp((int) temperature.getMorn());
         entity.setMaxTemp((int) temperature.getMax());
@@ -73,7 +75,7 @@ public final class EntityUtils {
         return entity;
     }
 
-    public static CityWithWeather toEntity(City city, List<WeatherList> weatherLists) {
+    public CityWithWeather toEntity(City city, List<WeatherList> weatherLists) {
         final CityWithWeather entity = new CityWithWeather();
         entity.setCity(toEntity(city));
         List<WeatherListEntity> weatherListEntitySet = new ArrayList<>();

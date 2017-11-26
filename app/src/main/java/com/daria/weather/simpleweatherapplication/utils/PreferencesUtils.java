@@ -7,16 +7,25 @@ import android.preference.PreferenceManager;
 
 import com.daria.weather.simpleweatherapplication.R;
 
+import dagger.Reusable;
+
 /**
  * Created by Daria Popova on 07.11.17.
  */
-
+@Reusable
 public final class PreferencesUtils {
 
     public static final String LOCATION_KEY = "location";
     public static final String UNITS_KEY = "units";
     public static final String LAT_COORD_KEY = "lat_coord";
     public static final String LON_COORD_KEY = "lon_coord";
+
+    public PreferencesUtils(SharedPreferences sharedPreferences) {
+        this.sharedPreferences = sharedPreferences;
+    }
+
+    private final SharedPreferences sharedPreferences;
+
 
     public static String getCity(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -67,7 +76,7 @@ public final class PreferencesUtils {
     public static void setAddress(Context context, Address address) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String city = address.getLocality().concat(",").concat(address.getCountryCode());
-         city =city.replaceAll("'", "");
+        city = city.replaceAll("'", "");
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(LOCATION_KEY, city);
         editor.apply();

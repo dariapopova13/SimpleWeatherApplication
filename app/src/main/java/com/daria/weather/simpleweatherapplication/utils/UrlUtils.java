@@ -24,6 +24,8 @@ public class UrlUtils {
     private static final String WEATHER_UNITS_PARAM = "units";
     private static final String WEATHER_API_KEY = "9b8203c6b9b90ba0d77e5b07f943d216";
 
+
+
     public static String getUrlFromPreferences(Context context){
         String city = PreferencesUtils.getCity(context);
         String units = PreferencesUtils.getMetric(context);

@@ -6,12 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
-import com.daria.weather.simpleweatherapplication.ui.view.TemperatureView;
-import com.daria.weather.simpleweatherapplication.ui.view.WeekdayView;
 import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 
 import java.util.List;
@@ -27,9 +26,11 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
 
     private List<WeatherListEntity> weatherList;
     private Context context;
+    private final DataUtils dataUtils;
 
-    public WeatherListAdapter(Context context) {
+    public WeatherListAdapter(Context context, DataUtils dataUtils) {
         this.context = context;
+        this.dataUtils = dataUtils;
     }
 
     public void setWeatherList(List<WeatherListEntity> weatherList) {
@@ -47,12 +48,12 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     @Override
     public void onBindViewHolder(WeatherViewHolder holder, int position) {
         WeatherListEntity entity = weatherList.get(position);
-        holder.minTemp.setTemp(entity.getTemperature().getMinTemp());
-        holder.maxTemp.setTemp(entity.getTemperature().getMaxTemp());
-        holder.weekday.setWeekday(entity.getDate());
+        holder.minTemp.setText(dataUtils.getTemp(entity.getTemperature().getMinTemp()));
+        holder.maxTemp.setText(dataUtils.getTemp(entity.getTemperature().getMaxTemp()));
+        holder.weekday.setText(dataUtils.getWeekday(entity.getDate()));
 
         Glide.with(context)
-                .load(DataUtils.getIcon(entity.getWeather().getId()))
+                .load(dataUtils.getIcon(entity.getWeather().getId()))
                 .into(holder.weatherIcon);
     }
 
@@ -64,13 +65,13 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     public class WeatherViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.weather_recycler_view_weekday)
-        WeekdayView weekday;
+        TextView weekday;
         @BindView(R.id.weather_recycler_view_icon)
         ImageView weatherIcon;
         @BindView(R.id.weather_recycler_view_max)
-        TemperatureView maxTemp;
+        TextView maxTemp;
         @BindView(R.id.weather_recycler_view_min)
-        TemperatureView minTemp;
+        TextView minTemp;
 
         public WeatherViewHolder(View view) {
             super(view);

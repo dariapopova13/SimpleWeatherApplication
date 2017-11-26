@@ -74,6 +74,7 @@ public class WeatherListEntity {
         if (deg != entity.deg) return false;
         if (clouds != entity.clouds) return false;
         if (Double.compare(entity.rain, rain) != 0) return false;
+        if (Double.compare(entity.snow, snow) != 0) return false;
         if (!date.equals(entity.date)) return false;
         if (!cityId.equals(entity.cityId)) return false;
         if (temperature != null ? !temperature.equals(entity.temperature) : entity.temperature != null)
@@ -95,6 +96,8 @@ public class WeatherListEntity {
         result = 31 * result + deg;
         result = 31 * result + clouds;
         temp = Double.doubleToLongBits(rain);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(snow);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + cityId.hashCode();
         result = 31 * result + (temperature != null ? temperature.hashCode() : 0);

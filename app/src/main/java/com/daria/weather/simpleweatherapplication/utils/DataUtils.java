@@ -1,5 +1,7 @@
 package com.daria.weather.simpleweatherapplication.utils;
 
+import android.content.Context;
+
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 
@@ -8,13 +10,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import dagger.Reusable;
+
 /**
  * Created by Daria Popova on 13.11.17.
  */
-
+@Reusable
 public final class DataUtils {
 
-    public static WeatherListEntity getCurrentWeather(List<WeatherListEntity> weatherListEntities) {
+    private Context context;
+
+    public DataUtils(Context context) {
+        this.context = context;
+    }
+
+    public WeatherListEntity getCurrentWeather(List<WeatherListEntity> weatherListEntities) {
         Date time = Calendar.getInstance().getTime();
         SimpleDateFormat format = new SimpleDateFormat("dd:MM:yyyy");
         String current = format.format(time);
@@ -31,7 +41,7 @@ public final class DataUtils {
         return null;
     }
 
-    public static String windDirection(float degrees) {
+    public String windDirection(float degrees) {
         String direction = "Unknown";
         if (degrees >= 337.5 || degrees < 22.5) {
             direction = "North";
@@ -53,7 +63,7 @@ public final class DataUtils {
         return direction;
     }
 
-    public static boolean isDay() {
+    public boolean isDay() {
         Calendar calendar = Calendar.getInstance();
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
 
@@ -63,7 +73,7 @@ public final class DataUtils {
         return hours >= dayStart && hours < dayEnd;
     }
 
-    public static int getBackground(int weatherId) {
+    public int getBackground(int weatherId) {
 
         if (weatherId >= 900 && weatherId <= 906) {
             return R.drawable.storm;
@@ -113,7 +123,7 @@ public final class DataUtils {
         return R.drawable.sunny_day;
     }
 
-    public static int getIcon(int weatherId) {
+    public int getIcon(int weatherId) {
 
         if (weatherId >= 200 && weatherId <= 232) {
             return R.drawable.ic_thunderstorm;
@@ -140,5 +150,28 @@ public final class DataUtils {
         }
 
         return R.drawable.ic_sunny;
+    }
+
+    public String getDate(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String formatDate = dateFormat.format(date);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int weekdayNumber = calendar.get(Calendar.DAY_OF_WEEK);
+        String weekdayShortName = DayOfWeek.of(weekdayNumber).shortName();
+        return weekdayShortName.concat(" ").concat(formatDate);
+    }
+
+    public String getTemp(double temp) {
+        final String DEGREE = "°";
+        return String.valueOf((int) temp).concat(DEGREE);
+    }
+
+    public String getWeekday(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        return DayOfWeek.of(calendar.get(Calendar.DAY_OF_WEEK)).name();
     }
 }

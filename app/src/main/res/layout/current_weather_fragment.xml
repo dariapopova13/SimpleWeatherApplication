@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.daria.weather.simpleweatherapplication.ui.view.DateView
+        <TextView
             android:id="@+id/main_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
             app:layout_constraintStart_toStartOf="@id/main_weather_current_temp"
             app:layout_constraintTop_toBottomOf="@id/main_weather_current_temp"/>
 
-        <com.daria.weather.simpleweatherapplication.ui.view.TemperatureView
+        <TextView
             android:id="@+id/main_weather_max_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
             app:layout_constraintStart_toEndOf="@id/main_weather_max_temp"
             app:layout_constraintTop_toTopOf="@id/main_weather_max_temp"/>
 
-        <com.daria.weather.simpleweatherapplication.ui.view.TemperatureView
+        <TextView
             android:id="@+id/main_weather_min_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
