@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Weekday names-->
+    <string name="monday_name">Monday</string>
+    <string name="tuesday_name">Tuesday</string>
+    <string name="wednesday_name">Wednesday</string>
+    <string name="thursday_name">Thursday</string>
+    <string name="friday_name">Friday</string>
+    <string name="saturday_name">Saturday</string>
+    <string name="sunday_name">Sunday</string>
+
+    <string name="monday_name_short">Mo.</string>
+    <string name="tuesday_name_short">Tu.</string>
+    <string name="wednesday_name_short">We.</string>
+    <string name="thursday_name_short">Th.</string>
+    <string name="friday_name_short">Fr.</string>
+    <string name="saturday_name_short">Sa.</string>
+    <string name="sunday_name_short">Su.</string>
+
+
+    <!--Titles-->
+    <string name="action_settings">Settings</string>
+    <string name="main_weather_max">Max:</string>
+    <string name="main_weather_min">Min:</string>
+    <string name="main_weather_wind">Wind:</string>
+    <string name="main_more">More…</string>
+    <string name="humidity_title">Humidity</string>
+    <string name="pressure_title">Pressure</string>
+    <string name="precipitation_title">Precipitation</string>
+    <string name="cloud_cover_title">Cloud Cover</string>
+
+    <string name="locaiton_detection_title">Locaiton detection</string>
+    <string name="location_detection_text">Detection current location…</string>
+
+    <!--Preferences titles-->
+    <string name="preferene_settings_categoty_title">Settings</string>
+    <string name="preferences_temp">Temperature</string>
+    <string name="temp_title">Temperature</string>
+    <string name="distance_title">Distance</string>
+    <string name="time_format_title">Time format</string>
+
+    <!--Wind direction-->
+    <string name="north_direction">North</string>
+    <string name="northeast_direction">Northeast</string>
+    <string name="east_direction">East</string>
+    <string name="southeast_direction">Southeast</string>
+    <string name="south_direction">South</string>
+    <string name="southwest_direction">Southwest</string>
+    <string name="west_direction">West</string>
+    <string name="northwest_direction">Northwest</string>
+
+</resources>

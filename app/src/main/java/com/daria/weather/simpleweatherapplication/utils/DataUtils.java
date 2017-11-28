@@ -44,23 +44,27 @@ public final class DataUtils {
     public String windDirection(float degrees) {
         String direction = "Unknown";
         if (degrees >= 337.5 || degrees < 22.5) {
-            direction = "North";
+            direction = "north";
         } else if (degrees >= 22.5 && degrees < 67.5) {
-            direction = "Northeast";
+            direction = "northeast";
         } else if (degrees >= 67.5 && degrees < 112.5) {
-            direction = "East";
+            direction = "east";
         } else if (degrees >= 112.5 && degrees < 157.5) {
-            direction = "Southeast";
+            direction = "southeast";
         } else if (degrees >= 157.5 && degrees < 202.5) {
-            direction = "South";
+            direction = "south";
         } else if (degrees >= 202.5 && degrees < 247.5) {
-            direction = "Southwest";
+            direction = "southwest";
         } else if (degrees >= 247.5 && degrees < 292.5) {
-            direction = "West";
+            direction = "west";
         } else if (degrees >= 292.5 && degrees < 337.5) {
-            direction = "Northwest";
+            direction = "northwest";
         }
-        return direction;
+        if (direction.equals("Unknown"))
+            return direction;
+        int id = context.getResources().getIdentifier(direction.concat("_direction"),
+                "string", context.getPackageName());
+        return context.getString(id);
     }
 
     public boolean isDay() {
@@ -159,7 +163,7 @@ public final class DataUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int weekdayNumber = calendar.get(Calendar.DAY_OF_WEEK);
-        String weekdayShortName = DayOfWeek.of(weekdayNumber).shortName();
+        String weekdayShortName = getWeekdayName(DayOfWeek.of(weekdayNumber).name(), true);
         return weekdayShortName.concat(" ").concat(formatDate);
     }
 
@@ -172,12 +176,26 @@ public final class DataUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
-        return DayOfWeek.of(calendar.get(Calendar.DAY_OF_WEEK)).name();
+        String weekday = DayOfWeek.of(calendar.get(Calendar.DAY_OF_WEEK)).name().toLowerCase();
+        return getWeekdayName(weekday, false);
     }
 
     public String getCurrentTemp(WeatherListEntity weather) {
         if (isDay())
             return getTemp(weather.getTemperature().getDayTemp());
         else return getTemp(weather.getTemperature().getNightTemp());
+    }
+
+    private String getWeekdayName(String weekday, boolean isShort) {
+        weekday = weekday.toLowerCase();
+        int id;
+        if (isShort) {
+            id = context.getResources().getIdentifier(weekday.concat("_name_short"),
+                    "string", context.getPackageName());
+        } else {
+            id = context.getResources().getIdentifier(weekday.concat("_name"),
+                    "string", context.getPackageName());
+        }
+        return context.getString(id);
     }
 }

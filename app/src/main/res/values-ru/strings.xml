@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Weekday names-->
+    <string name="monday_name">Понедельник</string>
+    <string name="tuesday_name">Вторник</string>
+    <string name="wednesday_name">Среда</string>
+    <string name="thursday_name">Четверг</string>
+    <string name="friday_name">Пятница</string>
+    <string name="saturday_name">Суббота</string>
+    <string name="sunday_name">Воскресенье</string>
+
+    <string name="monday_name_short">Пн.</string>
+    <string name="tuesday_name_short">Вт.</string>
+    <string name="wednesday_name_short">Ср.</string>
+    <string name="thursday_name_short">Чт.</string>
+    <string name="friday_name_short">Пт.</string>
+    <string name="saturday_name_short">Сб.</string>
+    <string name="sunday_name_short">Вс.</string>
+
+
+    <!--Titles-->
+    <string name="action_settings">Настройки</string>
+    <string name="main_weather_max">Макс:</string>
+    <string name="main_weather_min">Мин:</string>
+    <string name="main_weather_wind">Ветер:</string>
+    <string name="main_more">Больше…</string>
+    <string name="humidity_title">Влажность</string>
+    <string name="pressure_title">Давление</string>
+    <string name="precipitation_title">Осадки</string>
+    <string name="cloud_cover_title">Облачность</string>
+
+    <string name="locaiton_detection_title">Определяется местоположение</string>
+    <string name="location_detection_text">Определяется текущее местоположение…</string>
+
+    <!--Preferences titles-->
+    <string name="preferene_settings_categoty_title">Настройки</string>
+    <string name="preferences_temp">Температура</string>
+    <string name="temp_title">Температура</string>
+    <string name="distance_title">Расстояние</string>
+    <string name="time_format_title">Формат времени</string>
+
+    <!--Wind direction-->
+    <string name="north_direction">Северный</string>
+    <string name="northeast_direction">Северо-восточный</string>
+    <string name="east_direction">Восточный</string>
+    <string name="southeast_direction">Юго-восточный</string>
+    <string name="south_direction">Южный</string>
+    <string name="southwest_direction">Юго-западный</string>
+    <string name="west_direction">Западный</string>
+    <string name="northwest_direction">Северо-западный</string>
+</resources>

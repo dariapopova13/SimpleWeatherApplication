@@ -22,8 +22,5 @@ public enum DayOfWeek {
         return ENUMS[dayOfWeek - 1];
     }
 
-    public String shortName() {
-        return name().substring(0, 3).toLowerCase().concat(".");
-    }
 }
 
