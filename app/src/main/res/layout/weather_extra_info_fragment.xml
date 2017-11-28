@@ -49,18 +49,18 @@
                     tools:text="87%" />
             </TableRow>
 
-            <TableRow>
+            <!--<TableRow>-->
 
-                <TextView
-                    android:padding="@dimen/detailed_info_table_padding"
-                    android:text="@string/precipitation_title" />
+                <!--<TextView-->
+                    <!--android:padding="@dimen/detailed_info_table_padding"-->
+                    <!--android:text="@string/precipitation_title" />-->
 
-                <TextView
-                    android:id="@+id/detailed_info_table_precipitation"
-                    android:padding="@dimen/detailed_info_table_padding"
-                    android:text="@string/text_placeholder"
-                    tools:text="0,01778mm" />
-            </TableRow>
+                <!--<TextView-->
+                    <!--android:id="@+id/detailed_info_table_precipitation"-->
+                    <!--android:padding="@dimen/detailed_info_table_padding"-->
+                    <!--android:text="@string/text_placeholder"-->
+                    <!--tools:text="0,01778mm" />-->
+            <!--</TableRow>-->
 
             <!--<TableRow>-->
 

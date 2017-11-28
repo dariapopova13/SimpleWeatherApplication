@@ -33,8 +33,6 @@ public class CurrentWeatherFragment extends BaseDaggerFragment
     TextView dateView;
     @BindView(R.id.main_weather_current_temp)
     TextView currentWeatherTemp;
-    @BindView(R.id.main_weather_temp_units)
-    TextView weatherTempUnits;
     @BindView(R.id.main_weather_current_temp_icon)
     ImageView currentWeatherIcon;
     @BindView(R.id.main_weather_current_temp_description)
@@ -64,12 +62,11 @@ public class CurrentWeatherFragment extends BaseDaggerFragment
     }
 
     public void updateUI(WeatherListEntity weather) {
-        assert weather != null;
         dateView.setText(dataUtils.getDate(weather.getDate()));
         currentWeatherTemp.setText(dataUtils.getCurrentTemp(weather));
         weatherMaxTemp.setText(dataUtils.getTemp(weather.getTemperature().getMaxTemp()));
         weatherMinTemp.setText(dataUtils.getTemp(weather.getTemperature().getMinTemp()));
-        windSpeed.setText(String.valueOf((int) weather.getSpeed()));
+        windSpeed.setText(dataUtils.getWindSpeed(weather.getSpeed()));
         windDirection.setText(dataUtils.windDirection(weather.getDeg()));
         currentWeatherDescription.setText(weather.getWeather().getDescription());
 

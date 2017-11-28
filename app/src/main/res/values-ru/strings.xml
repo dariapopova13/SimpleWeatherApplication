@@ -48,4 +48,6 @@
     <string name="southwest_direction">Юго-западный</string>
     <string name="west_direction">Западный</string>
     <string name="northwest_direction">Северо-западный</string>
+
+    <string name="wind_speed">км/ч</string>
 </resources>

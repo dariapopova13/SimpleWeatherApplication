@@ -31,8 +31,6 @@ public class WeatherExtraInfoFragment extends BaseDaggerFragment
 
     @BindView(R.id.detailed_info_table_humidity)
     TextView humidity;
-    @BindView(R.id.detailed_info_table_precipitation)
-    TextView precipitation;
     @BindView(R.id.detailed_info_table_cloud_cover)
     TextView cloudCover;
     @BindView(R.id.detailed_info_table_pressure)
@@ -63,11 +61,9 @@ public class WeatherExtraInfoFragment extends BaseDaggerFragment
     }
 
     public void updateUI(WeatherListEntity weather) {
-        assert weather != null;
-        humidity.setText(String.valueOf(weather.getHumidity()));
-        precipitation.setText(String.valueOf(weather.getRain()));
-        cloudCover.setText(String.valueOf(weather.getClouds()));
-        pressure.setText(String.valueOf(weather.getPressure()));
+        humidity.setText(dataUtils.getHumidity(weather.getHumidity()));
+        cloudCover.setText(dataUtils.geCloudCover(weather.getClouds()));
+        pressure.setText(dataUtils.gePressure(weather.getPressure()));
         Glide.with(this)
                 .load(dataUtils.getIcon(weather.getWeather().getId()))
                 .into(currentWeatherIcon);

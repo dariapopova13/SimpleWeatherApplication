@@ -49,4 +49,5 @@
     <string name="west_direction">West</string>
     <string name="northwest_direction">Northwest</string>
 
+    <string name="wind_speed">km/h</string>
 </resources>

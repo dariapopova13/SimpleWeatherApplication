@@ -41,7 +41,7 @@ public final class DataUtils {
         return null;
     }
 
-    public String windDirection(float degrees) {
+    public String windDirection(double degrees) {
         String direction = "Unknown";
         if (degrees >= 337.5 || degrees < 22.5) {
             direction = "north";
@@ -65,16 +65,6 @@ public final class DataUtils {
         int id = context.getResources().getIdentifier(direction.concat("_direction"),
                 "string", context.getPackageName());
         return context.getString(id);
-    }
-
-    public boolean isDay() {
-        Calendar calendar = Calendar.getInstance();
-        int hours = calendar.get(Calendar.HOUR_OF_DAY);
-
-        int dayEnd = 22;
-        int dayStart = 6;
-
-        return hours >= dayStart && hours < dayEnd;
     }
 
     public int getBackground(int weatherId) {
@@ -184,6 +174,35 @@ public final class DataUtils {
         if (isDay())
             return getTemp(weather.getTemperature().getDayTemp());
         else return getTemp(weather.getTemperature().getNightTemp());
+    }
+
+    public String getHumidity(double humidity) {
+        return String.valueOf(humidity).concat(" %");
+    }
+
+    public String getWindSpeed(double speed) {
+        return String.valueOf((int) speed)
+                .concat(" ")
+                .concat(context.getString(R.string.wind_speed));
+    }
+
+
+    public String geCloudCover(int clouds) {
+        return String.valueOf(clouds).concat(" %");
+    }
+
+    public String gePressure(double pressure) {
+        return String.valueOf(pressure).concat(" mbar");
+    }
+
+    private boolean isDay() {
+        Calendar calendar = Calendar.getInstance();
+        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+
+        int dayEnd = 21;
+        int dayStart = 6;
+
+        return hours >= dayStart && hours < dayEnd;
     }
 
     private String getWeekdayName(String weekday, boolean isShort) {

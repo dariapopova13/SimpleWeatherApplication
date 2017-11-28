@@ -35,9 +35,9 @@ public class WeatherDataRepositoryImpl implements WeatherDataRepository {
     }
 
     private void updateWeatherDataFromNet() {
-        // FIXME: 26.11.17 remove
-        String url = "http://api.openweathermap.org/data/2.5" +
-                "/forecast/daily?q=Kazan,RU&units=metric&cnt=7&APPID=9b8203c6b9b90ba0d77e5b07f943d216";
+        //FIXME: 26.11.17 remove
+        String url = "http://api.openweathermap.org/data/2.5/forecast/" +
+                "daily?APPID=9b8203c6b9b90ba0d77e5b07f943d216&q=Kazan,RU&lang=ru&cnt=7&units=metric";
 
         synchronizer.synchronize(url);
     }
