@@ -14,24 +14,17 @@ import dagger.android.support.AndroidSupportInjection;
  * Created by Daria Popova on 19.11.17.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseDaggerFragment extends Fragment {
 
     @Inject
     @Named(BaseActivityModule.ACTIVITY_CONTEXT)
     protected Context context;
-//    @Inject
-//    DispatchingAndroidInjector<Fragment> childFragmentInjector;
 
     @Override
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
         super.onAttach(context);
     }
-//
-//
-//    @Override
-//    public AndroidInjector<Fragment> supportFragmentInjector() {
-//        return childFragmentInjector;
-//    }
+
 
 }

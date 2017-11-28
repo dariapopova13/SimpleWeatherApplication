@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen  xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/preferene_settings_categoty_title">
+
+        <ListPreference
+            android:entryValues="@array/temp_settings_array"
+            android:icon="@drawable/ic_sunny"
+            android:key="temp_units"
+            android:summary="@string/temp_title"
+            android:title="@string/temp_title" />
+
+        <ListPreference
+            android:entryValues="@array/distance_settings_array"
+            android:icon="@drawable/ic_distance"
+            android:key="distance_units"
+            android:summary="@string/distance_title"
+            android:title="@string/distance_title" />
+        <ListPreference
+            android:entryValues="@array/time_format_settings_array"
+            android:icon="@drawable/ic_time_format"
+            android:key="time_format"
+            android:summary="@string/time_format_title"
+            android:title="@string/time_format_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

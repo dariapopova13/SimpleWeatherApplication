@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.adapter.WeatherListAdapter;
-import com.daria.weather.simpleweatherapplication.ui.base.BaseFragment;
+import com.daria.weather.simpleweatherapplication.ui.base.BaseDaggerFragment;
 import com.daria.weather.simpleweatherapplication.viewmodel.ViewModelChangeListener;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import butterknife.Unbinder;
  * Created by Daria Popova on 12.11.17.
  */
 
-public class WeatherListFragment extends BaseFragment
+public class WeatherListFragment extends BaseDaggerFragment
         implements ViewModelChangeListener<List<WeatherListEntity>> {
 
     @BindView(R.id.main_week_weather_recycler_view)

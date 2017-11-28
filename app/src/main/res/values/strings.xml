@@ -35,6 +35,11 @@
     <string name="current_weather_icon_image_description">Current weather icon</string>
     <string name="no_location_data_provided">No location data provided</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="preferene_settings_categoty_title">Settings</string>
+    <string name="preferences_temp">Temperature</string>
+    <string name="temp_title">Temperature</string>
+    <string name="distance_title">Distance</string>
+    <string name="time_format_title">Time format</string>
 
 
 </resources>

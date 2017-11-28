@@ -15,6 +15,7 @@ import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.base.BaseViewModelActivity;
+//import com.daria.weather.simpleweatherapplication.ui.fragment.AppPreferancesFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.CurrentWeatherFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherExtraInfoFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherListFragment;
@@ -56,6 +57,8 @@ public class MainActivity extends BaseViewModelActivity<List<CityWithWeather>> {
     private CurrentWeatherFragment currentWeatherFragment;
     private WeatherExtraInfoFragment weatherExtraInfoFragment;
     private WeatherListFragment weatherListFragment;
+//    private AppPreferancesFragment fragment;
+//    private AppPreferancesFragment appPreferancesFragment;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,7 +90,6 @@ public class MainActivity extends BaseViewModelActivity<List<CityWithWeather>> {
         setContentView(R.layout.activity_main);
         initUI();
     }
-
 
     private void setBackground(WeatherListEntity weather) {
         Glide.with(this)
@@ -134,11 +136,13 @@ public class MainActivity extends BaseViewModelActivity<List<CityWithWeather>> {
         currentWeatherFragment = CurrentWeatherFragment.newInstance();
         weatherExtraInfoFragment = WeatherExtraInfoFragment.newInstance();
         weatherListFragment = WeatherListFragment.newInstance();
+//        appPreferancesFragment = AppPreferancesFragment.newInstance();
 
         fragmentManager.beginTransaction()
                 .replace(R.id.main_current_weather_holder, currentWeatherFragment)
                 .replace(R.id.weather_list_holder, weatherListFragment)
                 .replace(R.id.main_weather_extra_info_holder, weatherExtraInfoFragment)
+//                .replace(R.id.settings_fragment_holder, appPreferancesFragment)
                 .commit();
     }
 

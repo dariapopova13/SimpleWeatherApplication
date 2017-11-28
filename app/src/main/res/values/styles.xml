@@ -9,6 +9,9 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.PreferencesTheme" parent="PreferenceThemeOverlay">
+
+    </style>
 
     <style name="AppTheme.SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_background</item>

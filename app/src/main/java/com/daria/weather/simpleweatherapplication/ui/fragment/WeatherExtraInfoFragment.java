@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
-import com.daria.weather.simpleweatherapplication.ui.base.BaseFragment;
+import com.daria.weather.simpleweatherapplication.ui.base.BaseDaggerFragment;
 import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 import com.daria.weather.simpleweatherapplication.viewmodel.ViewModelChangeListener;
 
@@ -26,7 +26,7 @@ import butterknife.Unbinder;
  * Created by Daria Popova on 12.11.17.
  */
 
-public class WeatherExtraInfoFragment extends BaseFragment
+public class WeatherExtraInfoFragment extends BaseDaggerFragment
         implements ViewModelChangeListener<WeatherListEntity> {
 
     @BindView(R.id.detailed_info_table_humidity)

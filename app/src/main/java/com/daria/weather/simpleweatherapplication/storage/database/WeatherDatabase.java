@@ -2,7 +2,6 @@ package com.daria.weather.simpleweatherapplication.storage.database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.Transaction;
 
 import com.daria.weather.simpleweatherapplication.storage.database.dao.CityDao;
 import com.daria.weather.simpleweatherapplication.storage.database.dao.WeatherListDao;
@@ -25,11 +24,16 @@ public abstract class WeatherDatabase extends RoomDatabase {
 
     public abstract WeatherListDao weatherListRepository();
 
-    @Transaction
     public void insertCityWithWeather(CityWithWeather cityWithWeather) {
 
-        cityDao().delete(cityWithWeather.getCity());
-        cityDao().insert(cityWithWeather.getCity());
-        weatherListRepository().insert(cityWithWeather.getWeatherLists());
+        try {
+            beginTransaction();
+            cityDao().delete(cityWithWeather.getCity());
+            cityDao().insert(cityWithWeather.getCity());
+            weatherListRepository().insert(cityWithWeather.getWeatherLists());
+            setTransactionSuccessful();
+        } finally {
+            endTransaction();
+        }
     }
 }

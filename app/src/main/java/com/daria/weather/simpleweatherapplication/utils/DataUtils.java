@@ -174,4 +174,10 @@ public final class DataUtils {
 
         return DayOfWeek.of(calendar.get(Calendar.DAY_OF_WEEK)).name();
     }
+
+    public String getCurrentTemp(WeatherListEntity weather) {
+        if (isDay())
+            return getTemp(weather.getTemperature().getDayTemp());
+        else return getTemp(weather.getTemperature().getNightTemp());
+    }
 }

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
-import com.daria.weather.simpleweatherapplication.ui.base.BaseFragment;
+import com.daria.weather.simpleweatherapplication.ui.base.BaseDaggerFragment;
 import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 import com.daria.weather.simpleweatherapplication.viewmodel.ViewModelChangeListener;
 
@@ -26,7 +26,7 @@ import butterknife.Unbinder;
  * Created by Daria Popova on 12.11.17.
  */
 
-public class CurrentWeatherFragment extends BaseFragment
+public class CurrentWeatherFragment extends BaseDaggerFragment
         implements ViewModelChangeListener<WeatherListEntity> {
 
     @BindView(R.id.main_date)
@@ -66,7 +66,7 @@ public class CurrentWeatherFragment extends BaseFragment
     public void updateUI(WeatherListEntity weather) {
         assert weather != null;
         dateView.setText(dataUtils.getDate(weather.getDate()));
-        currentWeatherTemp.setText(String.valueOf(weather.getTemperature().getDayTemp()));
+        currentWeatherTemp.setText(dataUtils.getCurrentTemp(weather));
         weatherMaxTemp.setText(dataUtils.getTemp(weather.getTemperature().getMaxTemp()));
         weatherMinTemp.setText(dataUtils.getTemp(weather.getTemperature().getMinTemp()));
         windSpeed.setText(String.valueOf((int) weather.getSpeed()));

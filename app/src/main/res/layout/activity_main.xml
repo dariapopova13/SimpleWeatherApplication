@@ -28,7 +28,13 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@drawable/grey_gradient"
-        android:fitsSystemWindows="true"/>
+        android:fitsSystemWindows="true">
+
+        <FrameLayout
+            android:id="@+id/settings_fragment_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </android.support.design.widget.NavigationView>
 
 
 

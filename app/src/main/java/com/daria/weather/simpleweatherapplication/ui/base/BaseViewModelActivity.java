@@ -6,7 +6,7 @@ import com.daria.weather.simpleweatherapplication.viewmodel.ViewModelChangeListe
  * Created by Daria Popova on 24.11.17.
  */
 
-public abstract class BaseViewModelActivity<T> extends BaseActivity
+public abstract class BaseViewModelActivity<T> extends BaseDaggerActivity
         implements ViewModelChangeListener<T> {
 
 }
