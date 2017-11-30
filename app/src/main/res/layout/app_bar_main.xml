@@ -39,8 +39,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Lenina 15, Kazan, Respublika Tatarstan, Russia"
-                    tools:textColor="@android:color/black" />
+                    tools:text="Lenina 15, Kazan, Respublika Tatarstan, Russia" />
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v7.widget.Toolbar>

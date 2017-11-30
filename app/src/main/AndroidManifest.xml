@@ -41,6 +41,7 @@
                 android:resource="@xml/weather_widget_info" />
         </receiver>
 
+        <activity android:name=".ui.SettingsActivity"></activity>
     </application>
 
 </manifest>

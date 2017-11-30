@@ -5,10 +5,11 @@
         <item>C</item>
     </string-array>
 
-    <string-array name="distance_settings_array">
+    <string-array name="distance_settings_array_saved_names">
         <item>Km</item>
         <item>Mi</item>
     </string-array>
+
     <string-array name="time_format_settings_array">
         <item>12</item>
         <item>24</item>

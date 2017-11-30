@@ -38,6 +38,7 @@
     <string name="temp_title">Temperature</string>
     <string name="distance_title">Distance</string>
     <string name="time_format_title">Time format</string>
+    <string name="default_distance">Km</string>
 
     <!--Wind direction-->
     <string name="north_direction">North</string>

@@ -1,17 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+        <!--<item name="android:windowBackground">@color/colorPrimary</item>-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="preferenceTheme">@style/AppTheme.PreferencesStyle</item>
     </style>
 
-    <style name="AppTheme.PreferencesTheme" parent="PreferenceThemeOverlay">
-
-    </style>
+    <style name="AppTheme.PreferencesStyle" parent="PreferenceThemeOverlay" />
 
     <style name="AppTheme.SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_background</item>

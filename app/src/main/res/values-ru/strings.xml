@@ -38,6 +38,7 @@
     <string name="temp_title">Температура</string>
     <string name="distance_title">Расстояние</string>
     <string name="time_format_title">Формат времени</string>
+    <string name="default_distance">Км</string>
 
     <!--Wind direction-->
     <string name="north_direction">Северный</string>
@@ -50,4 +51,5 @@
     <string name="northwest_direction">Северо-западный</string>
 
     <string name="wind_speed">км/ч</string>
+
 </resources>

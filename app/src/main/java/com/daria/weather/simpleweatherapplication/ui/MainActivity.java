@@ -1,12 +1,12 @@
 package com.daria.weather.simpleweatherapplication.ui;
 
-import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +15,6 @@ import com.daria.weather.simpleweatherapplication.R;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.CityWithWeather;
 import com.daria.weather.simpleweatherapplication.storage.database.entitiy.WeatherListEntity;
 import com.daria.weather.simpleweatherapplication.ui.base.BaseViewModelActivity;
-//import com.daria.weather.simpleweatherapplication.ui.fragment.AppPreferancesFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.CurrentWeatherFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherExtraInfoFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherListFragment;
@@ -29,6 +28,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+//import com.daria.weather.simpleweatherapplication.ui.fragment.PreferencesFragment;
 
 
 public class MainActivity extends BaseViewModelActivity<List<CityWithWeather>> {
@@ -52,13 +53,9 @@ public class MainActivity extends BaseViewModelActivity<List<CityWithWeather>> {
     WeatherViewModel model;
     @Inject
     DataUtils dataUtils;
-    //    private ActionBarDrawerToggle drawerToggle;
-//    private WeatherLocationManager weatherLocationManager;
     private CurrentWeatherFragment currentWeatherFragment;
     private WeatherExtraInfoFragment weatherExtraInfoFragment;
     private WeatherListFragment weatherListFragment;
-//    private AppPreferancesFragment fragment;
-//    private AppPreferancesFragment appPreferancesFragment;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -67,10 +64,23 @@ public class MainActivity extends BaseViewModelActivity<List<CityWithWeather>> {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-//        drawerToggle.onConfigurationChanged(newConfig);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.main_menu_settings: {
+                startSettingsActivity();
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
+
+    private void startSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public void updateUI(List<CityWithWeather> cityWithWeathers) {
@@ -97,57 +107,23 @@ public class MainActivity extends BaseViewModelActivity<List<CityWithWeather>> {
                 .into(background);
     }
 
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-//        drawerToggle.syncState();
-    }
 
     private void initUI() {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-
-//        updateLocationText();
-
-
-//        drawerToggle = new ActionBarDrawerToggle(
-//                this,
-//                drawerLayout,
-//                R.string.open_drawer,
-//                R.string.close_drawer) {
+        getSupportActionBar().setIcon(R.drawable.ic_location_on_white_24dp);
 
 
-//            public void onDrawerClosed(View view) {
-//                super.onDrawerClosed(view);
-//                getSupportActionBar().setTitle("");
-//            }
-//
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//                getSupportActionBar().setTitle("");
-//            }
-//        };
-
-//        drawerLayout.addDrawerListener(drawerToggle);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeButtonEnabled(true);
-
-//        swipeRefreshLayout.setOnRefreshListener(this);
         currentWeatherFragment = CurrentWeatherFragment.newInstance();
         weatherExtraInfoFragment = WeatherExtraInfoFragment.newInstance();
         weatherListFragment = WeatherListFragment.newInstance();
-//        appPreferancesFragment = AppPreferancesFragment.newInstance();
 
         fragmentManager.beginTransaction()
                 .replace(R.id.main_current_weather_holder, currentWeatherFragment)
                 .replace(R.id.weather_list_holder, weatherListFragment)
                 .replace(R.id.main_weather_extra_info_holder, weatherExtraInfoFragment)
-//                .replace(R.id.settings_fragment_holder, appPreferancesFragment)
                 .commit();
     }
 
-//    private void updateLocationText() {
-//        location.setText(PreferencesUtils.getCity(this));
-//    }
 
 }

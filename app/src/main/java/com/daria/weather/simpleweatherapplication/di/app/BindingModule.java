@@ -1,8 +1,10 @@
 package com.daria.weather.simpleweatherapplication.di.app;
 
 import com.daria.weather.simpleweatherapplication.di.activity.main.MainActivityModule;
+import com.daria.weather.simpleweatherapplication.di.activity.settings.SettingsActivityModule;
 import com.daria.weather.simpleweatherapplication.di.scope.ActivityScope;
 import com.daria.weather.simpleweatherapplication.ui.MainActivity;
+import com.daria.weather.simpleweatherapplication.ui.SettingsActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -17,4 +19,8 @@ public interface BindingModule {
     @ContributesAndroidInjector(modules = MainActivityModule.class)
     MainActivity mainActivity();
 
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = SettingsActivityModule.class)
+    SettingsActivity settingsActivity();
 }

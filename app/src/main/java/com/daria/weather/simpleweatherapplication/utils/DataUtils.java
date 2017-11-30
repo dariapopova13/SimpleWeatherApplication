@@ -129,8 +129,10 @@ public final class DataUtils {
             return R.drawable.ic_snow;
         } else if (weatherId >= 701 && weatherId <= 761) {
             return R.drawable.ic_fog;
-        } else if (weatherId == 800) {
+        } else if (weatherId == 800 && isDay()) {
             return R.drawable.ic_sunny;
+        } else if (weatherId == 800) {
+            return R.drawable.ic_clear_night;
         } else if (weatherId == 801) {
             return R.drawable.ic_cloud;
         } else if (weatherId >= 802 && weatherId <= 804) {
@@ -139,8 +141,10 @@ public final class DataUtils {
             return R.drawable.ic_storm;
         } else if (weatherId >= 958 && weatherId <= 962) {
             return R.drawable.ic_storm;
-        } else if (weatherId >= 951 && weatherId <= 957) {
+        } else if (weatherId >= 951 && weatherId <= 957 && isDay()) {
             return R.drawable.ic_sunny;
+        } else if (weatherId >= 951 && weatherId <= 957) {
+            return R.drawable.ic_clear_night;
         }
 
         return R.drawable.ic_sunny;
@@ -177,7 +181,7 @@ public final class DataUtils {
     }
 
     public String getHumidity(double humidity) {
-        return String.valueOf(humidity).concat(" %");
+        return String.valueOf(humidity).concat("%");
     }
 
     public String getWindSpeed(double speed) {
@@ -188,7 +192,7 @@ public final class DataUtils {
 
 
     public String geCloudCover(int clouds) {
-        return String.valueOf(clouds).concat(" %");
+        return String.valueOf(clouds).concat("%");
     }
 
     public String gePressure(double pressure) {
