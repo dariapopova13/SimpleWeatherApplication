@@ -15,70 +15,91 @@ import dagger.Reusable;
 @Reusable
 public final class PreferencesUtils {
 
-    public static final String LOCATION_KEY = "location";
-    public static final String UNITS_KEY = "units";
-    public static final String LAT_COORD_KEY = "lat_coord";
-    public static final String LON_COORD_KEY = "lon_coord";
 
-    public PreferencesUtils(SharedPreferences sharedPreferences) {
-        this.sharedPreferences = sharedPreferences;
+    private final Context context;
+    private final SharedPreferences sp;
+
+    public PreferencesUtils(Context context, SharedPreferences sp) {
+        this.context = context;
+        this.sp = sp;
     }
 
-    private final SharedPreferences sharedPreferences;
+    public String getFullNameLocation() {
+        return sp.getString(getKey(R.string.full_name_location_key), "");
+    }
 
-
-    public static String getCity(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        String location = sp.getString(LOCATION_KEY,
+    public String getCity() {
+        String key = getKey(R.string.pref_location_key);
+        String location = sp.getString(key,
                 context.getString(R.string.default_preferences_location));
         return location;
     }
 
-    public static void setLocation(Context context, String location) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(LOCATION_KEY, location);
-        editor.apply();
-    }
-
-    public static String getMetric(Context context) {
+    public String getMetric() {
+        String key = getKey(R.string.pref_units_key);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String metricUnits = context.getString(R.string.default_preferences_units);
-        String units = sp.getString(UNITS_KEY, metricUnits);
+        String units = sp.getString(key, metricUnits);
         return units;
     }
 
-    public static void setUnits(Context context, String units) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(UNITS_KEY, units);
-        editor.apply();
-    }
-
-    public static double[] getLocationCoordintes(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-
+    public double[] getLocationCoordintes() {
+        String latKey = getKey(R.string.pref_lat_coord_key);
+        String lonKey = getKey(R.string.pref_lon_coord_key);
         double[] coord = new double[2];
-        coord[0] = Double.longBitsToDouble(sp.getLong(LAT_COORD_KEY, Double.doubleToLongBits(0.0)));
-        coord[1] = Double.longBitsToDouble(sp.getLong(LON_COORD_KEY, Double.doubleToLongBits(0.0)));
+        coord[0] = Double.longBitsToDouble(sp.getLong(latKey, Double.doubleToLongBits(0.0)));
+        coord[1] = Double.longBitsToDouble(sp.getLong(lonKey, Double.doubleToLongBits(0.0)));
         return coord;
     }
 
-    public static void setLocationCoord(Context context, double lat, double lon) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+    public void setAddress(Address address) {
         SharedPreferences.Editor editor = sp.edit();
-        editor.putLong(LAT_COORD_KEY, Double.doubleToLongBits(lat));
-        editor.putLong(LON_COORD_KEY, Double.doubleToLongBits(lon));
+        setCity(formCityWithCountryName(address), editor);
+        setLocationCoord(address.getLatitude(), address.getLongitude(), editor);
+        setFullName(address, editor);
+        editor.apply();
+    }
+
+    private void setFullName(Address address, SharedPreferences.Editor editor) {
+        String name = address.getLocality()
+                .concat(", ")
+                .concat(address.getAdminArea())
+                .concat(", ")
+                .concat(address.getCountryName());
+        String key = getKey(R.string.full_name_location_key);
+        editor.putString(key, name);
+    }
+
+    private String formCityWithCountryName(Address address) {
+        return address.getLocality()
+                .replaceAll("'", "")
+                .concat(",")
+                .concat(address.getCountryCode());
+    }
+
+    private void setCity(String location, SharedPreferences.Editor editor) {
+        String key = getKey(R.string.pref_location_key);
+        editor.putString(key, location);
+    }
+
+    private void setLocationCoord(double lat, double lon, SharedPreferences.Editor editor) {
+        String latKey = getKey(R.string.pref_lat_coord_key);
+        String lonKey = getKey(R.string.pref_lon_coord_key);
+
+        editor.putLong(latKey, Double.doubleToLongBits(lat));
+        editor.putLong(lonKey, Double.doubleToLongBits(lon));
+
+    }
+
+    private void setUnits(String units) {
+        String key = getKey(R.string.pref_units_key);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(key, units);
         editor.apply();
     }
 
 
-    public static void setAddress(Context context, Address address) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        String city = address.getLocality().concat(",").concat(address.getCountryCode());
-        city = city.replaceAll("'", "");
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(LOCATION_KEY, city);
-        editor.apply();
+    private String getKey(int id) {
+        return context.getString(id);
     }
 }

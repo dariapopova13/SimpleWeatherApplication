@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.daria.weather.simpleweatherapplication.utils.DataUtils;
 import com.daria.weather.simpleweatherapplication.utils.EntityUtils;
 import com.daria.weather.simpleweatherapplication.utils.PreferencesUtils;
+import com.daria.weather.simpleweatherapplication.utils.UrlUtils;
 
 import javax.inject.Named;
 
@@ -24,6 +25,10 @@ public class UtilsModule {
         return new DataUtils(context);
     }
 
+    @Provides
+    public UrlUtils provideUrlUtils(PreferencesUtils preferencesUtils) {
+        return new UrlUtils(preferencesUtils);
+    }
 
     @Provides
     public EntityUtils provideEntityUtils() {
@@ -32,8 +37,9 @@ public class UtilsModule {
 
 
     @Provides
-    public PreferencesUtils providePreferencesUtils(SharedPreferences sharedPreferences) {
-        return new PreferencesUtils(sharedPreferences);
+    public PreferencesUtils providePreferencesUtils(SharedPreferences sharedPreferences,
+                                                    @Named(ApplicationModule.APPLICATION_CONTEXT) Context context) {
+        return new PreferencesUtils(context, sharedPreferences);
     }
 
 

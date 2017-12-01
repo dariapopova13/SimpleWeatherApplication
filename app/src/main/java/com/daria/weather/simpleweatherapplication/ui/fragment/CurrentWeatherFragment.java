@@ -29,8 +29,6 @@ import butterknife.Unbinder;
 public class CurrentWeatherFragment extends BaseDaggerFragment
         implements ViewModelChangeListener<WeatherListEntity> {
 
-    @BindView(R.id.main_date)
-    TextView dateView;
     @BindView(R.id.main_weather_current_temp)
     TextView currentWeatherTemp;
     @BindView(R.id.main_weather_current_temp_icon)
@@ -62,7 +60,6 @@ public class CurrentWeatherFragment extends BaseDaggerFragment
     }
 
     public void updateUI(WeatherListEntity weather) {
-        dateView.setText(dataUtils.getDate(weather.getDate()));
         currentWeatherTemp.setText(dataUtils.getCurrentTemp(weather));
         weatherMaxTemp.setText(dataUtils.getTemp(weather.getTemperature().getMaxTemp()));
         weatherMinTemp.setText(dataUtils.getTemp(weather.getTemperature().getMinTemp()));

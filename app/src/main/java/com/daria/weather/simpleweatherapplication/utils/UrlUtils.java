@@ -1,8 +1,9 @@
 package com.daria.weather.simpleweatherapplication.utils;
 
 
-import android.content.Context;
 import android.net.Uri;
+
+import java.util.Locale;
 
 /**
  * Created by Daria Popova on 25.09.17.
@@ -23,32 +24,31 @@ public class UrlUtils {
     private static final String WEATHER_MODE_PARAM = "mode";
     private static final String WEATHER_UNITS_PARAM = "units";
     private static final String WEATHER_API_KEY = "9b8203c6b9b90ba0d77e5b07f943d216";
+    private static final String WEATHER_LANG_PARAM = "lang";
 
+    private final PreferencesUtils preferencesUtils;
 
+    public UrlUtils(PreferencesUtils preferencesUtils) {
+        this.preferencesUtils = preferencesUtils;
+    }
 
-    public static String getUrlFromPreferences(Context context){
-        String city = PreferencesUtils.getCity(context);
-        String units = PreferencesUtils.getMetric(context);
+    public String getUrlFromPreferences() {
+        String city = preferencesUtils.getCity();
+        String units = preferencesUtils.getMetric();
         String result = new WeatherUrlBuilder()
                 .setCityName(city)
                 .setDaysCount(7)
                 .setUnitParam(units)
+                .setLanguage()
                 .build();
 
         return result;
     }
 
-    public static class WeatherUrlBuilder {
+    public class WeatherUrlBuilder {
 
         private Uri uri;
 
-        public String getUrlFromPreferences() {
-//            WeatherUrlBuilder builder = new WeatherUrlBuilder()
-//                    .setCityName(PreferencesUtils.getCity(context))
-//                    .seD
-
-            return "";
-        }
 
         public WeatherUrlBuilder() {
             uri = Uri.parse(WEATHER_BASE_API_URL).buildUpon()
@@ -95,12 +95,18 @@ public class UrlUtils {
             return this;
         }
 
+        public WeatherUrlBuilder setLanguage() {
+            String lang = Locale.getDefault().getLanguage();
+            addToUri(WEATHER_LANG_PARAM, lang);
+            return this;
+        }
 
         public String build() {
             String uriString = uri.toString();
             uriString = uriString.replaceAll("%2C", ",");
             return uriString;
         }
+
 
         private void addToUri(String param, String value) {
             uri = uri.buildUpon()

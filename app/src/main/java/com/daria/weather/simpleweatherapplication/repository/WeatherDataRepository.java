@@ -12,6 +12,6 @@ import java.util.List;
 
 public interface WeatherDataRepository {
 
-    LiveData<List<CityWithWeather>> getWeatherLists();
+    LiveData<List<CityWithWeather>> getWeatherLists(boolean update);
 
 }

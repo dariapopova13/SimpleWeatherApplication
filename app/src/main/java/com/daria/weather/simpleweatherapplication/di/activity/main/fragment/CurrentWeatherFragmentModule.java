@@ -1,4 +1,4 @@
-package com.daria.weather.simpleweatherapplication.di.activity.main;
+package com.daria.weather.simpleweatherapplication.di.activity.main.fragment;
 
 import android.support.v4.app.Fragment;
 

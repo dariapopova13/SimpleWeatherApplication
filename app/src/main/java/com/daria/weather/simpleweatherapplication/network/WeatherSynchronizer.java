@@ -21,5 +21,4 @@ public class WeatherSynchronizer {
         service.getWeather(url).enqueue(callbackResponse);
     }
 
-
 }

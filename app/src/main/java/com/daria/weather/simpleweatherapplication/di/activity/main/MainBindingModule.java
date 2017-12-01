@@ -1,5 +1,6 @@
 package com.daria.weather.simpleweatherapplication.di.activity.main;
 
+import com.daria.weather.simpleweatherapplication.di.activity.main.fragment.WeatherListFragmentModule;
 import com.daria.weather.simpleweatherapplication.di.scope.FragmentScope;
 import com.daria.weather.simpleweatherapplication.ui.fragment.CurrentWeatherFragment;
 import com.daria.weather.simpleweatherapplication.ui.fragment.WeatherExtraInfoFragment;
@@ -28,7 +29,4 @@ public abstract class MainBindingModule {
     @ContributesAndroidInjector
     public abstract WeatherExtraInfoFragment weatherExtraInfoFragment();
 
-//    @FragmentScope
-//    @ContributesAndroidInjector
-//    public abstract PreferencesFragment appPreferancesFragment();
 }

@@ -35,4 +35,5 @@ public class WeatherCallbackResponse implements Callback<WeatherResponse> {
     public void onFailure(Call<WeatherResponse> call, Throwable t) {
 
     }
+
 }

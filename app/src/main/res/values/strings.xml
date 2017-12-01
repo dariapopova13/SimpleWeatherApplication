@@ -8,16 +8,22 @@
     <string name="default_preferences_lat">51.5085</string>
     <string name="default_preferences_lon">-0.1258</string>
     <string name="sync_action">Sync</string>
+    <string name="pref_location_key">location_key</string>
+    <string name="pref_units_key">units_key</string>
+    <string name="pref_lat_coord_key">lat_coord_key</string>
+    <string name="pref_lon_coord_key">lon_coord_key</string>
+
 
     <string name="temp_placeholder">0°</string>
     <string name="text_placeholder">---</string>
-    <string name="date_placeholder">---. 00/00/0000</string>
+    <string name="default_time_format">E, dd/MM/yyyy</string>
 
 
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
     <string name="current_weather_icon_image_description">Current weather icon</string>
     <string name="no_location_data_provided">No location data provided</string>
+    <string name="full_name_location_key">full_name_location_key</string>
 
 
 </resources>

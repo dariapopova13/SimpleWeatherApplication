@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 
 import com.daria.weather.simpleweatherapplication.utils.PreferencesUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -22,15 +21,18 @@ import java.util.Locale;
 
 public class WeatherLocationManager {
 
-    private Activity activity;
-    private FusedLocationProviderClient client;
-    private Callback callback;
+    private final Activity activity;
+    private final FusedLocationProviderClient client;
+    private final PreferencesUtils preferencesUtils;
 
-    public WeatherLocationManager(Activity activity) {
+    public WeatherLocationManager(Activity activity,
+                                  FusedLocationProviderClient client,
+                                  PreferencesUtils preferencesUtils) {
         this.activity = activity;
-        client = LocationServices.getFusedLocationProviderClient(activity);
-        getAddress();
+        this.client = client;
+        this.preferencesUtils = preferencesUtils;
     }
+
 
     @SuppressWarnings("MissingPermission")
     public void getAddress() {
@@ -50,7 +52,10 @@ public class WeatherLocationManager {
                                     location.getLatitude(),
                                     location.getLongitude(),
                                     1);
-                            PreferencesUtils.setAddress(activity, addresses.get(0));
+                            preferencesUtils.setAddress(addresses.get(0));
+                            if (activity instanceof Callback) {
+                                ((Callback) activity).onSuccess();
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -59,12 +64,15 @@ public class WeatherLocationManager {
                 }).addOnFailureListener(activity, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                // FIXME: 14.11.17 add something
+                if (activity instanceof Callback) {
+                    ((Callback) activity).onFuilure();
+                }
             }
         });
     }
 
     public interface Callback {
+
         void onSuccess();
 
         void onFuilure();

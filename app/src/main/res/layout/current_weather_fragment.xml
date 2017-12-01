@@ -1,5 +1,4 @@
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,27 +6,28 @@
     android:layout_marginEnd="@dimen/main_margin"
     android:layout_marginStart="@dimen/main_margin"
     android:layout_marginTop="@dimen/main_margin"
-    app:cardElevation="@dimen/main_card_elevation"
+    app:cardBackgroundColor="@color/card_view_opacity_black"
     app:cardCornerRadius="@dimen/main_card_corner_radius"
-    app:cardBackgroundColor="@color/card_view_opacity_black">
+    app:cardElevation="@dimen/main_card_elevation">
 
     <android.support.constraint.ConstraintLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <TextClock
             android:id="@+id/main_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="16dp"
-            android:text="@string/date_placeholder"
+            android:format12Hour="@string/default_time_format"
+            android:format24Hour="@string/default_time_format"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/main_clock"
             app:layout_constraintStart_toStartOf="@+id/main_clock"
             app:layout_constraintTop_toTopOf="@id/main_weather_current_temp"
-            tools:text="mon. 11/12/2017"/>
+            tools:text="mon. 11/12/2017" />
 
         <TextClock
             android:id="@+id/main_clock"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="52dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="20dp"
             android:text="@string/temp_placeholder"
             android:textSize="60sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -63,10 +63,10 @@
             android:layout_height="@dimen/main_weather_current_temp_icon_size"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
             android:contentDescription="@string/current_weather_icon_image_description"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/main_weather_current_temp"
-            tools:src="@drawable/weather_icon_png_5"/>
+            tools:src="@drawable/weather_icon_png_5" />
 
         <TextView
             android:id="@+id/main_weather_current_temp_description"
@@ -90,7 +90,7 @@
             android:text="@string/main_weather_max"
             app:layout_constraintBottom_toTopOf="@+id/main_wind_text_view"
             app:layout_constraintStart_toStartOf="@id/main_weather_current_temp"
-            app:layout_constraintTop_toBottomOf="@id/main_weather_current_temp"/>
+            app:layout_constraintTop_toBottomOf="@id/main_weather_current_temp" />
 
         <TextView
             android:id="@+id/main_weather_max_temp"
@@ -100,7 +100,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/temp_placeholder"
             app:layout_constraintStart_toEndOf="@id/max_temp_text_view"
-            app:layout_constraintTop_toTopOf="@id/max_temp_text_view"/>
+            app:layout_constraintTop_toTopOf="@id/max_temp_text_view" />
 
         <TextView
             android:id="@+id/min_temp_text_view"
@@ -109,7 +109,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/main_weather_min"
             app:layout_constraintStart_toEndOf="@id/main_weather_max_temp"
-            app:layout_constraintTop_toTopOf="@id/main_weather_max_temp"/>
+            app:layout_constraintTop_toTopOf="@id/main_weather_max_temp" />
 
         <TextView
             android:id="@+id/main_weather_min_temp"
@@ -118,7 +118,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/temp_placeholder"
             app:layout_constraintStart_toEndOf="@id/min_temp_text_view"
-            app:layout_constraintTop_toTopOf="@id/min_temp_text_view"/>
+            app:layout_constraintTop_toTopOf="@id/min_temp_text_view" />
 
         <TextView
             android:id="@+id/main_wind_text_view"
@@ -132,7 +132,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/max_temp_text_view"/>
+            app:layout_constraintTop_toBottomOf="@+id/max_temp_text_view" />
+
         <TextView
             android:id="@+id/main_wind_direction"
             android:layout_width="wrap_content"
@@ -142,7 +143,7 @@
             app:layout_constraintBottom_toBottomOf="@id/main_wind_text_view"
             app:layout_constraintStart_toEndOf="@id/main_wind_text_view"
             app:layout_constraintTop_toTopOf="@id/main_wind_text_view"
-            tools:text="East"/>
+            tools:text="East" />
 
         <TextView
             android:id="@+id/main_weather_wind_speed"

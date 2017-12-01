@@ -23,14 +23,11 @@
     <string name="main_weather_max">Макс:</string>
     <string name="main_weather_min">Мин:</string>
     <string name="main_weather_wind">Ветер:</string>
-    <string name="main_more">Больше…</string>
+
     <string name="humidity_title">Влажность</string>
     <string name="pressure_title">Давление</string>
     <string name="precipitation_title">Осадки</string>
     <string name="cloud_cover_title">Облачность</string>
-
-    <string name="locaiton_detection_title">Определяется местоположение</string>
-    <string name="location_detection_text">Определяется текущее местоположение…</string>
 
     <!--Preferences titles-->
     <string name="preferene_settings_categoty_title">Настройки</string>
@@ -51,5 +48,5 @@
     <string name="northwest_direction">Северо-западный</string>
 
     <string name="wind_speed">км/ч</string>
-
+    <string name="location_failure_message">Не удалось получить текущее местоположение</string>
 </resources>

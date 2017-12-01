@@ -3,7 +3,6 @@ package com.daria.weather.simpleweatherapplication.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.daria.weather.simpleweatherapplication.repository.WeatherDataRepository;
@@ -17,18 +16,17 @@ import java.util.List;
 
 public class WeatherViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<CityWithWeather>> cityWithWeather;
     private WeatherDataRepository repository;
 
 
     public WeatherViewModel(@NonNull Application application, WeatherDataRepository repository) {
         super(application);
         this.repository = repository;
-        cityWithWeather = new MutableLiveData<>();
     }
 
-    public LiveData<List<CityWithWeather>> getCityWithWeather() {
-        return repository.getWeatherLists();
+    public LiveData<List<CityWithWeather>> getCityWithWeather(boolean update) {
+        return repository.getWeatherLists(update);
     }
+
 
 }

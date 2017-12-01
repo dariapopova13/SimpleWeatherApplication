@@ -23,14 +23,10 @@
     <string name="main_weather_max">Max:</string>
     <string name="main_weather_min">Min:</string>
     <string name="main_weather_wind">Wind:</string>
-    <string name="main_more">More…</string>
     <string name="humidity_title">Humidity</string>
     <string name="pressure_title">Pressure</string>
     <string name="precipitation_title">Precipitation</string>
     <string name="cloud_cover_title">Cloud Cover</string>
-
-    <string name="locaiton_detection_title">Locaiton detection</string>
-    <string name="location_detection_text">Detection current location…</string>
 
     <!--Preferences titles-->
     <string name="preferene_settings_categoty_title">Settings</string>
@@ -51,4 +47,5 @@
     <string name="northwest_direction">Northwest</string>
 
     <string name="wind_speed">km/h</string>
+    <string name="location_failure_message">Couldn\'t get current location</string>
 </resources>

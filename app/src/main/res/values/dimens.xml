@@ -15,4 +15,5 @@
     <dimen name="main_card_elevation">0dp</dimen>
     <dimen name="detailed_info_current_weather_icon_size">60dp</dimen>
     <dimen name="detailed_info_table_padding">5dp</dimen>
+    <dimen name="location_icon_size">30dp</dimen>
 </resources>

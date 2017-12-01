@@ -11,6 +11,7 @@ import com.daria.weather.simpleweatherapplication.repository.WeatherDataReposito
 import com.daria.weather.simpleweatherapplication.repository.WeatherDataRepositoryImpl;
 import com.daria.weather.simpleweatherapplication.storage.WeatherStorageManager;
 import com.daria.weather.simpleweatherapplication.storage.database.WeatherDatabase;
+import com.daria.weather.simpleweatherapplication.utils.UrlUtils;
 import com.daria.weather.simpleweatherapplication.viewmodel.WeatherViewModelFactory;
 
 import javax.inject.Named;
@@ -62,8 +63,9 @@ public class ApplicationModule {
     @Provides
     public WeatherDataRepository provideWeatherDataRepository(WeatherStorageManager manager,
                                                               WeatherSynchronizer synchronizer,
-                                                              @Named(APPLICATION_CONTEXT) Context context) {
-        return new WeatherDataRepositoryImpl(manager, synchronizer, context);
+                                                              @Named(APPLICATION_CONTEXT) Context context,
+                                                              UrlUtils urlUtils) {
+        return new WeatherDataRepositoryImpl(manager, synchronizer, context, urlUtils);
     }
 
 
